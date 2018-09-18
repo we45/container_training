@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-resource
+  namespace: default
+spec:
+  containers:
+  - image: sharathwe45/nginx-stress
+    name: nginx
+    resources:
+      requests:
+        memory: 400Mi
+      limits:
+        memory: 500Mi
