@@ -6,25 +6,30 @@
 
 Step 1: Create Three Folders named `Folder-1`,  `Folder-2` and `mnt`
 
-        ScreenShot Here
+![](img/ufs-1.png)
+
 
 Step 2: Create sub-directories and files in `Folder-1` and `Folder-2`
 
-        ScreenShot Here
+![](img/ufs-2.png)
+
         
 Step 3: Check the structure of directories that have been created
 
-        ScreenShot Here
-        
-Step 4: Run `unionfs-fuse -o dirs=Folder1:Folder2  mnt/` 
+![](img/ufs-3.png)
 
-        ScreenShot Here
         
-Step 5: Directories and files in `Folder-1` and `Folder-2` will be mounted on `mnt`
+Step 4: Run `unionfs-fuse -o dirs=Folder-1:Folder-2  mnt/` . The directories and files in `Folder-1` and `Folder-2` will be mounted on `mnt`
 
-Step 6: Check the structure of `mnt/` 
-
-        ScreenShot Here
+![](img/ufs-4.png)
         
-Step 7: To unmount, run `umount -l /path/to/mnt`
+
+Step 5: Check the structure of `mnt/` 
+
+![](img/ufs-5.png)
+
+        
+Step 6: To unmount, run `umount -l /path/to/mnt`
+
+![](img/ufs-6.png)
 
