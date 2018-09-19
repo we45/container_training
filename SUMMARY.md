@@ -43,4 +43,28 @@
     
 * [7. Container Orchestrators](7-Container-Orchestrators/SUMMARY.md)
     * [7.1.0 Docker Compose](7-Container-Orchestrators/7.1.0-Docker-Compose/README.md)
+    
+* [8. K8s-Attacking](K8s-Attacking-a-K8s-cluster/SUMMARY.md)
+    * [K8s-Cluster-Attack](K8s-Attacking-a-K8s-cluster/K8s-Cluster-Attack/README.md)
+    
+* [8. K8s-Monitoring-Logging](K8s-Monitoring-Logging/SUMMARY.md)
+    * [Prometheus-Grafana](K8s-Monitoring-Logging/Prometheus-Grafana/README.md)
+    * [SysdigFalco](K8s-Monitoring-Logging/SysdigFalco/README.md)
+    
+* [8. K8s-Pod-Security-Policy](K8s-Pod-Security-Policy/SUMMARY.md)
+    * [PodSecurity](K8s-Pod-Security-Policy/PodSecurityPolicy/README.md)
+    
+* [K8s-RBAC](K8s-RBAC/SUMMARY.md)
+    * [Role-Based-Access-Control](K8s-RBAC/RoleBasedAccessControl/README.md)
+    
+* [K8s-Resource-Quota](K8s-ResourceQuota/SUMMARY.md)
+    * [Resource-Quota](K8s-ResourceQuota/ResourceQuota_Limit/README.md)
+    
+* [K8s-Sealed-Secrets](K8s-SealedSecrets/SUMMARY.md)
+    * [Sealed-Secrets](K8s-SealedSecrets/SealedSecrets/README.md)
+    
+* [K8s-Vulnerability-Assessment](K8s-Vulnerability-Assessment/SUMMARY.md)
+    * [Kube-Bench](K8s-Vulnerability-Assessment/Kube-Bench/README.md)
+    * [Kube-Hunter](K8s-Vulnerability-Assessment/Kube-Hunter/README.md)
+    * [Kube-Sec](K8s-Vulnerability-Assessment/Kube-Sec/README.md)
 
