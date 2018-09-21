@@ -52,7 +52,7 @@ The focus is to block off some possible attacks and reduce the damage caused by 
 * Navigate to the Labs directory with the `Pod-Security-Policy/PodSecurityPolicy` directory
 
 ##### Step 2:
-* Run `apparmor_parse k8s-vul-flask-redis-armor` to apply the profile on the local AppArmor instance
+* Run `apparmor_parser k8s-vul-flask-redis-armor` to apply the profile on the local AppArmor instance
 
 ##### Step 3:
 * Make sure your minikube instance is running
@@ -62,7 +62,7 @@ The focus is to block off some possible attacks and reduce the damage caused by 
 * Run `kubectl get pods` and make wait till you get the status of `Running` for the Pod
 
 ##### Step 5:
-* Now run kubectl exec -it secure-ngflask-redis --container secure-vul-flask -- sh` get a shell environment on the Container running flask
+* Now run `kubectl exec -it secure-ngflask-redis --container secure-vul-flask -- sh` get a shell environment on the Container running flask
 * Try to create a file with `touch shell.py`. Observe the results
 * Try to create a file in the `/tmp` directory with `touch /tmp/shell.py`. Observe the results.
 * Try and access `/etc/passwd` or `/etc/shadow` with `cat /etc/passwd` or `cat /etc/shadow`
