@@ -1,0 +1,5 @@
+FILE="${1:-}";
+[[ ! -f "${FILE}" ]] && {
+    echo "kubesec: ${FILE}: No such file. Please Check file path" >&2;
+};
+curl --silent --compressed --connect-timeout 5 -F file=@"${FILE}" https://kubesec.io/

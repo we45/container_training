@@ -1,7 +1,7 @@
 ## Resource Quotas and Limits
 
 ##### Step 1:
-* Make sure minikube is running
+* Make sure minikube is running `minikube status`
 
 ##### Step 2:
 * Navigate to the `ResourceQuota_Limit` directory
