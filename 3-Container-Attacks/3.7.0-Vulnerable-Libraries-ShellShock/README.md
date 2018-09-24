@@ -1,6 +1,16 @@
-# Vulnerable/Outdated Libraries
+## Vulnerable/Outdated Libraries
 
----
+##### Step 1:
+* Open Terminal
+
+	![](img/Open-Terminal.png)
+
+##### Step 2:
+*  **cd** into  `Labs/3.0.0-Container-Attacks/3.7.0`
+
+    ```commandline
+    cd Labs/3.0.0-Container-Attacks/3.7.0
+    ```
 
 
 Shell-Shock (Bash) 

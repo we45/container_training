@@ -1,6 +1,16 @@
-# LXC
+## LXC
 
----
+##### Step 1:
+
+* Open Terminal
+![](img/Open-Terminal.png)
+
+##### Step 2:
+*  **cd** into  `Labs/2.0.0-Container-Tech-Deep-Dive/2.3.0-LXC`
+
+```cd Labs/2.0.0-Container-Tech-Deep-Dive/2.3.0-LXC```
+
+##### Step 3:
 
 Step 1: To create your first LXC container, run `lxc-create -t download -n my-container`
 
