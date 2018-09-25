@@ -1,30 +1,57 @@
-#AppArmor (Application Armor)
+##AppArmor (Application Armor)
 
---- 
+##### Step 1:
+* Open Terminal
 
-* Open terminal
+	![](img/Open-Terminal.png)
 
-![](../../img/click_terminal.png)
+##### Step 2:
+*  **cd** into  `Labs/4.0.0-Container-Security-Deep-Dive/4.3.0`
 
-* Type "cd" into "/etc/apparmor.d"
+    ```commandline
+    cd Labs/4.0.0-Container-Security-Deep-Dive/4.3.0
+    ```
 
-![](../../img/app_armor_cd.png)
+##### Step 2:
+*  **cd** into  `/etc/apparmor.d`
 
-* Type mkdir containers (create containers folder)
+    ```commandline
+    cd /etc/apparmor.d
+    ```
 
-![](../../img/app_armor_create_container_folder.png)
+##### Step 3:
+* Run `mkdir containers` to create folder
 
-* Type "cd /etc/apparmor.d/containers"
+    ```commandline
+    root@we45:/etc/apparmor.d# mkdir containers    
+    ```
 
-![](../../img/app_armor_cd_containers_folder.png)
+##### Step 4:
+*  **cd** into  `/etc/apparmor.d/containers`
 
-* Create apparmor config file (touch docker_app_armor_config)
+    ```commandline
+    cd /etc/apparmor.d/containers
+    ```
 
-![](../../img/app_armor_create_config_file.png)
+##### Step 5:
+* Run `touch docker_app_armor_config`
 
-* Open "docker_app_armor_config" file (mousepad docker_app_armor_config)
+    ```commandline
+    root@we45:/etc/apparmor.d/containers# touch docker_app_armor_config
+    ```
 
-![](../../img/app_armor_mousepad.png)
+##### Step 6:
+* Run  `atom .` to open ataom IDE
+
+##### Step 7:
+* Enter configuration details.
+
+```text
+
+```
+
+##### Step 8:
+
 
 * Enter configuration details (in this case we have disabled the passwd file view and write permission)
 

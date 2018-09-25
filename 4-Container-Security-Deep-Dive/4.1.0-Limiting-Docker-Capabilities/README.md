@@ -1,23 +1,47 @@
-#Linux Capabilities 
+##Linux Capabilities
 
----
+##### Step 1:
+* Open Terminal
 
-* Open terminal
+	![](img/Open-Terminal.png)
 
-![](img/open_terminal.png)
+##### Step 2:
+*  **cd** into  `Labs/4.0.0-Container-Security-Deep-Dive/4.1.0`
 
-* Run a docker container and ping localhost
-    * `docker run -it alpine ping -c 1 localhost`
+    ```commandline
+    cd Labs/4.0.0-Container-Security-Deep-Dive/4.1.0
+    ```
+
+##### Step 3:
+* Run `docker run -it alpine ping -c 1 localhost` to ping localhost network.
+
+    ```commandline
+    root@we45:~/Labs/4.0.0-Container-Security-Deep-Dive/4.1.0# docker run -it alpine ping -c 1 localhost
+    PING localhost (127.0.0.1): 56 data bytes
+    64 bytes from 127.0.0.1: seq=0 ttl=64 time=0.054 ms
     
-    ![](img/docker-pull.png)
+    --- localhost ping statistics ---
+    1 packets transmitted, 1 packets received, 0% packet loss
+    round-trip min/avg/max = 0.054/0.054/0.054 ms
+    ```
+
+##### Step 4:
+* Run `docker run --cap-drop=net_raw -it alpine ping -c 1 localhost` docker container and disable network syscall and ping into localhost.
+
+    ```commandline
+    root@we45:~/Labs/4.0.0-Container-Security-Deep-Dive/4.1.0# docker run --cap-drop=net_raw -it alpine ping -c 1 localhost
+    PING localhost (127.0.0.1): 56 data bytes
+    ping: permission denied (are you root?)
+    ```
+##### Step 5:    
+* Run `docker run --cap-drop=ALL --cap-add=net_raw -it alpine ping -c 1 localhost` docker container and disable all syscall and allow only  network syscall and ping into localhost.
+
+    ```commandline
+    root@we45:~/Labs/4.0.0-Container-Security-Deep-Dive/4.1.0# docker run --cap-drop=ALL --cap-add=net_raw -it alpine ping -c 1 localhost
+    PING localhost (127.0.0.1): 56 data bytes
+    64 bytes from 127.0.0.1: seq=0 ttl=64 time=0.061 ms
     
-  
-* Run a docker container and disable network syscall and ping into localhost
-    * `docker run --cap-drop=net_raw -it alpine ping -c 1 localhost`
-    
-    ![](img/docker-pull.png)
-    
-* Run a docker container and disable all syscall and allow only  network syscall and ping into localhost
-    * `docker run --cap-drop=ALL --cap-add=net_raw -it alpine ping -c 1 localhost`
-    
-    ![](img/part-1/docker-pull.png)
+    --- localhost ping statistics ---
+    1 packets transmitted, 1 packets received, 0% packet loss
+    round-trip min/avg/max = 0.061/0.061/0.061 ms
+    ```
