@@ -15,7 +15,7 @@
 ![](img/search-icon.png)
 
 ##### Step 4:
-* In the search parameter, enter required fields and search.
+* In the search functionality, enter a payload and search.
 ![](img/search-default-view.png)
 
 ##### Step 5:
