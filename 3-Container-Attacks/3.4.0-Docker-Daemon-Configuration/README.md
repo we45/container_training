@@ -1,18 +1,32 @@
-# Docker Daemon Configuration
-
----
+# **`Docker Daemon Configuration`**
 
 
+Step 1: Run an nmap scan on the VM to get the list of ports that are open. `nmap 127.0.0.1 -sV -p 4243`
 
-    * Insecure Docker API configuration can compromise a host machine.
-    NJ needs to finish final piece of this and will get it done by Friday EOD
+![](img/daemon-config-1.png)
 
 
-    Run Nmap on 127.0.0.1 to discover docker port maybe? Just to show that it's open
+Step 2: To check access to the docker API, access `http://localhost:4243/version` and `http://localhost:4243/images/json`
+ 
+![](img/daemon-config-2.png)
 
-Step 1. Once you have access to a remote machine docker API, access `http://<IP>:<PORT>/version` or `http://<IP>:<PORT>/images/json` to confirm.
-Step 2. Run a script that will exploit the Remote docker API by running a malicious image on it.
-Step 3. In this case, `nithinwe45/insecure_image` has an ssh service running on it and has the docker socket exposed.
-Step 4. You can access the malicious container by running `ssh -i ~/.ssh/id_rsa root@<IP> -p 22022`
-Step 5. Once inside the container, running `docker images` should give you access to images of the host machine.
-Step 6. Use `Container Breakout (docker socket expose)` to gain access to the host.
+
+Step 3: Activate the python virtual environment and run the script that will run a malicious container via. the docker API.
+
+![](img/daemon-config-3.png)
+
+
+Step 4: On the browser, access the port mentioned in the script. `http://127.0.0.1:6080/vnc.html`
+
+![](img/daemon-config-4.png)
+
+
+Step 5: `Right-Click` and open the terminal. The user has UI access to the Host machine. 
+
+![](img/daemon-config-5.png)
+
+
+Step 6: To fix this issue, open `/etc/default/docker` and comment `DOCKER_OPTS`
+
+![](img/daemon-config-6.png)
+
