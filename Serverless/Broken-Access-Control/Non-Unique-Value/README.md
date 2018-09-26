@@ -1,17 +1,22 @@
 ## None-Unique Values
 
 ##### Step 1:
+
 * Open browser
 
 ![](img/open-browser.png)
 
 
 ##### Step 2:
-* open `http://sls-training-ui.s3-website-us-east-1.amazonaws.com/` for the XML-Uploder application.
+
+* open `http://sls-training-ui.s3-website-us-east-1.amazonaws.com/` to access the XML-Uploader application.
+
 ![](img/login-page.png)
 
+
 ##### Step 3:
-* Press `shift+f9` or right click on top of the browser and click on `Web Developer`  select the `Storage Inspect` tab.
+
+* Click `Shift + f9` or right click on top of the browser and click on `Web Developer` to select the `Storage Inspect` tab.
 
 ![](img/local-storage.png)
 
@@ -28,6 +33,7 @@
 ![](img/click-protected.png)
 
 ##### Step 6:
+
 * User deleted from the application.
 
 ##### Step 7:
@@ -42,7 +48,7 @@
 
 ##### Step 9:
 
-* Press `shift+f9` or right click on top of the browser and click on `Web Developer`  select the `Storage Inspect` tab.
+* Click `Shift + f9` or right click on top of the browser and click on `Web Developer` to select the `Storage Inspect` tab.
 
 ![](img/local-storage.png)
 
@@ -54,7 +60,7 @@
 
 ##### Step 11:
  
-* Once `toke` pasted , in the URL `http://sls-training-ui.s3-website-us-east-1.amazonaws.com/protected`
+* Once `token` is pasted , access the URL `http://sls-training-ui.s3-website-us-east-1.amazonaws.com/protected`
 
 ![](img/finalised.png)
 

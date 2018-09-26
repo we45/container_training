@@ -9,37 +9,53 @@
 
 ##### Step 2:
 
-* open `http://sls-training-ui.s3-website-us-east-1.amazonaws.com/` for the XML-Uploder application.
+* open `http://sls-training-ui.s3-website-us-east-1.amazonaws.com/` to access the XML-Uploader application.
 
 ![](img/login-page.png)
 
 
 ##### Step 3:
 
-* Using `email` and `password` login into the application.
+* Using `email` and `password` login to the application.
 
 ![](img/login-page.png)
 
 ##### Step 4:
 
-* Press `shift+f9` or right click on top of the browser and click on `Web Developer`  select the `Storage Inspect` tab.
+* Click `Shift + f9` or right click on top of the browser and click on `Web Developer`,  select the `Storage Inspect` tab.
 
 ![](img/local-storage.png)
 
 ##### Step 5:
 
 * Click on `Local-Storage` icon on left, and expand.
+
     * Copy the `token`
     
     ![](img/get_token.png)
-    
-##### Step 6:
+
+#### Step 6:
+
+* Open https://jwt.io/ and paste the token. Tamper the value in Payload section to 
+
+
+    {
+    "username": "admin",
+    "role": "admin",
+    "email": "admin@widget.co"
+    }
+
+
+![](img/tamper-jwt.png)
+
+
+##### Step 7:
 
 * Open Terminal
 
 ![](img/Open-Terminal.png)
 
-##### Step 7:
+##### Step 8:
 
 * Run ` http GET https://3u97ne6l2g.execute-api.us-east-1.amazonaws.com/latest/none Authorization:<paste the copied token>`
 

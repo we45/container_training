@@ -8,7 +8,7 @@
 
 ##### Step 2:
 
-* open `http://sls-training-ui.s3-website-us-east-1.amazonaws.com/` for the XML-Uploder application.
+* open `http://sls-training-ui.s3-website-us-east-1.amazonaws.com/` to access the XML-Uploader application.
 
 ![](img/login-page.png)
 
@@ -24,19 +24,20 @@
 
 ##### Step 4:
 
-* Using `email` and `password` login into the application.
+* Using `email` and `password` login to the application.
 
 ![](img/login-page.png)
 
 ##### Step 5:
 
-* Once Logged in, Click `Upload File` icon
+* Once Logged in, click `Upload File` icon
 
 ![](img/click-upload-xml.png)
 
 ##### Step 6:
 
 * Upload-XML file view
+
 **Note:** Please upload a malicious XML file
 
 ![](img/upload-file-view.png)
@@ -45,7 +46,8 @@
 ##### Step 7:
 
 * Once the file has been uploaded, It will redirect to `/home/` .
-**Note:** Here will see all our uploaded Xml files
+
+**Note:** Here will see all our uploaded Xml files. Please refresh the page if the file is not visible.
 
 ![](img/upload-file-view.png)
 
@@ -57,10 +59,7 @@
 
 ##### Step 9:
 
-* You will see that the exploit has been successful.
+* You will see that the exploitation has been successful.
 
 ![](img/exploited-info.png)
-
-
-
 
