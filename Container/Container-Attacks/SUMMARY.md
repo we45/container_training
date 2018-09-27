@@ -12,6 +12,6 @@
 
 * [Host Network Configuration](Host-Network-Configuration/README.md)
 
-* [Vulnerable Libraries - ShellShock](Vulnerable-Libraries(ShellShock)/README.md)
+* [Vulnerable Libraries - ShellShock](Vulnerable-Libraries-ShellShock/README.md)
 
 * [Denial of Service](Denial-of-Service/README.md)

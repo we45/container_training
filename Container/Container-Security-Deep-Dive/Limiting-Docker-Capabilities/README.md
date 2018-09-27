@@ -1,4 +1,4 @@
-## Linux Capabilities
+## Docker Capabilities
 
 ##### Step 1:
 

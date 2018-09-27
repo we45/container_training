@@ -84,6 +84,6 @@
     **Note:** Press `ctrl + c` or `ctrl + z` to exit from the view
     
     
-    ![](img/dlayer-2.png)
+   ![](img/dlayer-2.png)
         
 
