@@ -10,6 +10,12 @@
 ##### Step 2:
 
 * open `http://sls-training-ui.s3-website-us-east-1.amazonaws.com/` to access the XML-Uploader application.
+**Note:** Login has
+ ```
+ email: john.vicky@widget.co
+ password: Test@1234    
+ ```
+ * Username is `john`
 
 ![](img/login-page.png)
 
@@ -22,7 +28,7 @@
 
 ##### Step 4:
 
-* Copy the `token` of user 'jack'
+* Copy the `token`
 
 ![](img/copy-token.png)
 
@@ -34,11 +40,11 @@
 
 ##### Step 6:
 
-* User deleted from the application.
+* Follow the instructor .
 
 ##### Step 7:
 
-* Register new user with same username
+* Register new user with  `john` username.
 
 ![](img/register-page.png)
 
