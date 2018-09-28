@@ -1,6 +1,6 @@
 FROM ubuntu:latest
 RUN apt-get update && apt-get install wget -y && wget -qO- https://get.docker.com | sh
-RUN apt install -y ufw python-pip python-dev && pip install -U pip setuptools
+RUN apt install -y ufw python-pip python-dev
 RUN mkdir app
 COPY helloworld /app/helloworld
 ENV TESTENV="test"

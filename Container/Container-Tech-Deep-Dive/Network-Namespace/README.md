@@ -9,9 +9,9 @@
 
 ##### Step 2:
 
-*  **cd** into  `Labs/2.0.0-Container-Tech-Deep-Dive/2.1.1-Network-Namespace`
+*  **cd** into  `/home/we45/container_training/Container/Container-Tech-Deep-Dive/Network-Namespace`
 
-```cd Labs/2.0.0-Container-Tech-Deep-Dive/2.1.1-Network-Namespace```
+```cd /home/we45/container_training/Container/Container-Tech-Deep-Dive/Network-Namespace```
 
 
 
@@ -62,7 +62,7 @@ lxcbr0    Link encap:Ethernet  HWaddr 7e:88:28:b7:8d:0b
 * Run `iptables -L` to get the iptables info.
 
 ```
-root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.1.1-Network-Namespace# iptables -L
+root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Network-Namespace# iptables -L
 Chain INPUT (policy ACCEPT)
 target     prot opt source               destination         
 ACCEPT     tcp  --  anywhere             anywhere             tcp dpt:domain
@@ -108,7 +108,7 @@ RETURN     all  --  anywhere             anywhere
 * Run `route -n` to get the default network gateways.
 
 ```
-root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.1.1-Network-Namespace# route -n
+root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Network-Namespace# route -n
 Kernel IP routing table
 Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 0.0.0.0         10.0.2.2        0.0.0.0         UG    0      0        0 eth0
@@ -122,14 +122,14 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 
 * To add a Networking Namespace, run `ip netns add NetNameSpace`
 
-```root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.1.1-Network-Namespace# ip netns add NetNameSpace```
+```root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Network-Namespace# ip netns add NetNameSpace```
 
 ##### Step 7:
 
 * Run `ip netns list` to get the list of Network Namespaces
 
 ```
-root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.1.1-Network-Namespace# ip netns list
+root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Network-Namespace# ip netns list
 NetNameSpace
 ```
 
@@ -138,14 +138,14 @@ NetNameSpace
 * Run `sudo ip netns exec NetNameSpace bash` to exec into the Network Namespace.
 
 ```
-root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.1.1-Network-Namespace# sudo ip netns exec NetNameSpace bash
+root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Network-Namespace# sudo ip netns exec NetNameSpace bash
 ```
 
 ##### Step 9:
 
 * Run `ifconfig -a` to get the list of network interfaces on the 'NetNameSpace' Network Namespace.
 
-```root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.1.1-Network-Namespace# ifconfig -a
+```root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Network-Namespace# ifconfig -a
 lo        Link encap:Local Loopback  
           LOOPBACK  MTU:65536  Metric:1
           RX packets:0 errors:0 dropped:0 overruns:0 frame:0
@@ -159,7 +159,7 @@ lo        Link encap:Local Loopback
 * Run  and `iptables -L` to verify that there is no iptables available, since this is a new networking stack.
 
 ```
-root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.1.1-Network-Namespace# iptables -L
+root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Network-Namespace# iptables -L
 Chain INPUT (policy ACCEPT)
 target     prot opt source               destination         
 
@@ -174,7 +174,7 @@ target     prot opt source               destination
            
 * Run `route -n` to verify that there is no default gateway, inside a new container.
 
-```root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.1.1-Network-Namespace# route -n
+```root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Network-Namespace# route -n
 Kernel IP routing table
 Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 ```
@@ -184,7 +184,7 @@ Destination     Gateway         Genmask         Flags Metric Ref    Use Iface
 * Run `exit` to exit from the Network Namespace.
 
 ```
-root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.1.1-Network-Namespace# exit
+root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Network-Namespace# exit
 exit
 
 ```
@@ -194,7 +194,7 @@ exit
 * Run  `ip netns list` to verify the Network Namespece.
 
 ```
-root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.1.1-Network-Namespace# ip netns list
+root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Network-Namespace# ip netns list
 NetNameSpace
 
 ```
@@ -204,6 +204,6 @@ NetNameSpace
 * To delete the Network Namespce, run `sudo ip netns del NetNameSpace`
 
 ```
-root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.1.1-Network-Namespace# sudo ip netns del NetNameSpace
-root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.1.1-Network-Namespace# 
+root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Network-Namespace# sudo ip netns del NetNameSpace
+root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Network-Namespace# 
 ```

@@ -8,10 +8,10 @@
 
 ##### Step 2:
 
-*  **cd** into  `/home/we45/Labs/4.0.0-Container-Security-Deep-Dive/4.2.0`
+*  **cd** into  `/home/we45/container_training/Container/Container-Security-Deep-Dive/SecComp`
 
     ```commandline
-    cd /home/we45/Labs/4.0.0-Container-Security-Deep-Dive/4.2.0
+    cd /home/we45/container_training/Container/Container-Security-Deep-Dive/SecComp
     ```
 
 ##### Step 3:
@@ -19,7 +19,7 @@
 * Run `touch sec_comp_policy.json` create seccomp file
 
     ```commandline
-    root@we45:~/Labs/4.0.0-Container-Security-Deep-Dive/4.2.0# touch sec_comp_policy.json
+    root@we45:~/container_training/Container/Container-Security-Deep-Dive/SecComp# touch sec_comp_policy.json
     ```
 
 ##### Step 4:
@@ -27,7 +27,7 @@
 * Run `atom .` to launch the atom IDE
 
     ```commandline
-    root@we45:~/Labs/4.0.0-Container-Security-Deep-Dive/4.2.0# atom .
+    root@we45:~/container_training/Container/Container-Security-Deep-Dive/SecComp# atom .
     ```
 
 ##### Step 5:
@@ -63,7 +63,7 @@
 * Once saved the configuration run docker using `docker run -d --name=seccomp --security-opt seccomp:sec_comp_policy.json alpine`
 
     ```commandline
-    root@we45:~/Labs/4.0.0-Container-Security-Deep-Dive/4.2.0# docker run -d --security-opt seccomp:sec_comp_policy.json -p 5050:5050 abhaybhargav/vul_flask
+    root@we45:~/container_training/Container/Container-Security-Deep-Dive/SecComp# docker run -d --security-opt seccomp:sec_comp_policy.json -p 5050:5050 abhaybhargav/vul_flask
     4509ec89cdd062725c8c0f454452e4abfc1f67cd6be2f8880148123c36c1182c
     ```
 

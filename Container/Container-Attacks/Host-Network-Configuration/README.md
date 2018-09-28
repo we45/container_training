@@ -8,10 +8,10 @@
 
 ##### Step 2:
 
-*  **cd** into  `Labs/3.0.0-Container-Attacks/3.5.0`
+*  **cd** into  `/home/we45/container_training/Container/Container-Attacks/Host-Network-Configuration`
 
     ```commandline
-    cd Labs/3.0.0-Container-Attacks/3.5.0
+    cd /home/we45/container_training/Container/Container-Attacks/Host-Network-Configuration
     ```
 
 ##### Step 3:
@@ -19,7 +19,7 @@
 * Check if `ufw` is enabled on the host machine by running `ufw status`
 
     ```commandline
-    root@we45:~/Labs/3.0.0-Container-Attacks/3.5.0# ufw status
+    root@we45:~/container_training/Container/Container-Attacks/Host-Network-Configuration# ufw status
     Status: inactive
     ```
 
@@ -28,7 +28,7 @@
 * Enable `ufw` by running `ufw enable`
 
     ```commandline
-    root@we45:~/Labs/3.0.0-Container-Attacks/3.5.0# ufw enable
+    root@we45:~/container_training/Container/Container-Attacks/Host-Network-Configuration# ufw enable
     Firewall is active and enabled on system startup
     ```
 
@@ -37,7 +37,7 @@
 * Run `docker run -d --privileged --net=host --name vul_flask abhaybhargav/vul_flask` to start a docker container.
 
     ```commandline
-    root@we45:~/Labs/3.0.0-Container-Attacks/3.5.0# docker run -d --privileged --net=host --name vul_flask abhaybhargav/vul_flask
+    root@we45:~/container_training/Container/Container-Attacks/Host-Network-Configuration# docker run -d --privileged --net=host --name vul_flask abhaybhargav/vul_flask
     6733abdce5042a90db8b7d40a08155470c727e8b3864eda519714e172f63be88
     ```
  
@@ -46,7 +46,7 @@
 * Run `docker ps` to view, all running containers.
 
     ```commandline
-    root@we45:~/Labs/3.0.0-Container-Attacks/3.5.0# docker ps
+    root@we45:~/container_training/Container/Container-Attacks/Host-Network-Configuration# docker ps
     CONTAINER ID        IMAGE                    COMMAND             CREATED             STATUS              PORTS               NAMES
     d0169e5801fe        abhaybhargav/vul_flask   "python app.py"     24 seconds ago      Up 22 seconds       5050/tcp            vul_flask
     ```
@@ -58,7 +58,7 @@
 * Run `docker exec -it vul_flask bash` to exec into a running container.
 
     ```commandline
-    root@we45:~/Labs/3.0.0-Container-Attacks/3.5.0# docker exec -it vul_flask bash
+    root@we45:~/container_training/Container/Container-Attacks/Host-Network-Configuration# docker exec -it vul_flask bash
     root@d0169e5801fe:/apps# 
     ```
     ![](img/docker-exec.png)
@@ -226,7 +226,7 @@
 * Run `ufw status` in the host machine to verity ufw is running or not.
 
     ```commandline
-    root@we45:~/Labs/3.0.0-Container-Attacks/3.5.0# ufw status
+    root@we45:~/container_training/Container/Container-Attacks/Host-Network-Configuration# ufw status
     Status: inactive
     ```
 
@@ -235,7 +235,7 @@
 * Run `docker stop vul_flask` to stop the running container.
 
     ```commandline
-    root@we45:~/Labs/3.0.0-Container-Attacks/3.5.0# docker stop vul_flask
+    root@we45:~/container_training/Container/Container-Attacks/Host-Network-Configuration# docker stop vul_flask
     vul_flask    
     ```
 
@@ -244,6 +244,6 @@
 * Run `docker rm vul_flask` to remove stopped container.
 
     ```commandline
-    root@we45:~/Labs/3.0.0-Container-Attacks/3.5.0# docker rm vul_flask
+    root@we45:~/container_training/Container/Container-Attacks/Host-Network-Configuration# docker rm vul_flask
     vul_flask    
     ```

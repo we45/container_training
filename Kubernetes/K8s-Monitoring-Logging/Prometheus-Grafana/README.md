@@ -43,7 +43,7 @@ Step 6: Launch an application by running `kubectl create -f wecare-k8.yaml`
 ![](img/prometheus-grafana-6.png)
 
 
-Step 7: Get Prometheus & Grafana urls by running `minikube service prometheus-service -n monitoring --url` and `minikube service prometheus-service -n monitoring --url`
+Step 7: Get Prometheus & Grafana urls by running `minikube service prometheus-service -n monitoring --url` and `minikube service grafana -n monitoring --url`
 
 ![](img/prometheus-grafana-7.png)
 

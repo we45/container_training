@@ -10,17 +10,17 @@
 
 ##### Step 2:
 
-*  **cd** into  `Labs/3.0.0-Container-Attacks/3.2.0`
+*  **cd** into  `/home/we45/container_training/Container/Container-Attacks/Docker-Daemon-Direct-Access`
 
     ```commandline
-    cd Labs/3.0.0-Container-Attacks/3.2.0
+    cd /home/we45/container_training/Container/Container-Attacks/Docker-Daemon-Direct-Access
     ```
 ##### Step 3:
 
 * Run `docker run -d -v /var/run/docker.sock:/var/run/docker.sock --name vul_flask abhaybhargav/vul_flask` to start a docker container.
 
     ```commandline
-    root@we45:~/Labs/3.0.0-Container-Attacks/3.2.0# docker run -d -v /var/run/docker.sock:/var/run/docker.sock --name vul_flask abhaybhargav/vul_flask
+    root@we45:~/container_training/Container/Container-Attacks/Docker-Daemon-Direct-Access# docker run -d -v /var/run/docker.sock:/var/run/docker.sock --name vul_flask abhaybhargav/vul_flask
     1681e86d567eaa2b7344cff0535819fffe8f3a786b4b768be3c95d9b40a4e71d
     ```
       
@@ -31,7 +31,7 @@
 * Run `docker ps` to view, all running containers.
 
     ```commandline
-    root@we45:~/Labs/3.0.0-Container-Attacks/3.2.0# docker ps
+    root@we45:~/container_training/Container/Container-Attacks/Docker-Daemon-Direct-Access# docker ps
     CONTAINER ID        IMAGE                    COMMAND             CREATED              STATUS              PORTS               NAMES
     1681e86d567e        abhaybhargav/vul_flask   "python app.py"     About a minute ago   Up About a minute   5050/tcp            vul_flask/tcp            vul_flask
     ```
@@ -43,7 +43,7 @@
 * Run `docker exec -it vul_flask bash` to exec into a running container.
 
     ```commandline
-    root@we45:~/Labs/3.0.0-Container-Attacks/3.2.0# docker exec -it vul_flask bash
+    root@we45:~/container_training/Container/Container-Attacks/Docker-Daemon-Direct-Access# docker exec -it vul_flask bash
     root@1681e86d567e:/apps# 
     ```
     ![](img/docker-exec.png)
@@ -182,7 +182,7 @@ secret
 * Run `docker stop vul_flask` to stop the running container.
 
     ```commandline
-    root@we45:~/Labs/3.0.0-Container-Attacks/3.2.0# docker stop vul_flask
+    root@we45:~/container_training/Container/Container-Attacks/Docker-Daemon-Direct-Access# docker stop vul_flask
     vul_flask
     ```
         
@@ -193,7 +193,7 @@ secret
 * Run `docker rm vul_flask` to remove stopped container.
 
     ```commandline
-    root@we45:~/Labs/3.0.0-Container-Attacks/3.2.0# docker rm vul_flask
+    root@we45:~/container_training/Container/Container-Attacks/Docker-Daemon-Direct-Access# docker rm vul_flask
     vul_flask
     ```
     ![](img/docker-rm.png)

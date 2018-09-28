@@ -8,10 +8,10 @@
 
 ##### Step 2:
 
-*  **cd** into  `Labs/2.0.0-Container-Tech-Deep-Dive/2.4.0-Intro-To-Docker/2.4.1-Docker-Hands-On-Part-1`
+*  **cd** into  `/home/we45/container_training/Container/Container-Tech-Deep-Dive/Docker-Hands-On`
 
     ```commandline
-    cd Labs/2.0.0-Container-Tech-Deep-Dive/2.4.0-Intro-To-Docker/2.4.1-Docker-Hands-On-Part-1
+    cd /home/we45/container_training/Container/Container-Tech-Deep-Dive/Docker-Hands-On
     ```
 
 ##### Step 3:
@@ -21,7 +21,7 @@
     **Note:** If the docker image exists.
     
     ```commandline
-      root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.4.0-Intro-To-Docker/2.4.1-Docker-Hands-On-Part-1# docker pull abhaybhargav/vul_flask
+      root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Docker-Hands-On# docker pull abhaybhargav/vul_flask
       Using default tag: latest
       latest: Pulling from abhaybhargav/vul_flask
       Digest: sha256:a3fe27c223066aa605e3fca8d49fbe53ab26f39f89ed895485669239f6c433ae
@@ -31,7 +31,7 @@
     **Note:** If the docker image doesn't exists.
     
     ```commandline
-    root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.4.0-Intro-To-Docker/2.4.1-Docker-Hands-On-Part-1# docker pull abhaybhargav/vul_flask
+    root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Docker-Hands-On# docker pull abhaybhargav/vul_flask
     Using default tag: latest
     latest: Pulling from abhaybhargav/vul_flask
     f2b6b4884fc8: Pull complete 
@@ -57,7 +57,7 @@
 * Run `docker images` to get list of images on the machine
 
     ```commandline
-    root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.4.0-Intro-To-Docker/2.4.1-Docker-Hands-On-Part-1# docker images
+    root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Docker-Hands-On# docker images
     REPOSITORY                     TAG                 IMAGE ID            CREATED             SIZE
     mongo                          latest              e3985c6fb3c8        2 weeks ago         381MB
     ubuntu                         16.04               b9e15a5d1e1a        2 weeks ago         115MB
@@ -80,7 +80,7 @@
 * Run `docker run -d --name vul_flask abhaybhargav/vul_flask` to start a docker container.
 
     ```commandline
-    root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.4.0-Intro-To-Docker/2.4.1-Docker-Hands-On-Part-1# docker run -d --name vul_flask abhaybhargav/vul_flask
+    root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Docker-Hands-On# docker run -d --name vul_flask abhaybhargav/vul_flask
     0c8c0c6a51226dad50b7d58a629cdd1dd3981dc1233e63788631552e1127abf0
     ```
       
@@ -91,7 +91,7 @@
 * Run `docker ps` to view, all running containers.
 
     ```commandline
-    root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.4.0-Intro-To-Docker/2.4.1-Docker-Hands-On-Part-1# docker ps
+    root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Docker-Hands-On# docker ps
     CONTAINER ID        IMAGE                    COMMAND             CREATED             STATUS              PORTS               NAMES
     0c8c0c6a5122        abhaybhargav/vul_flask   "python app.py"     35 seconds ago      Up 34 seconds       5050/tcp            vul_flask
     ```
@@ -103,7 +103,7 @@
 * Run `docker exec -it vul_flask bash` to exec into a running container.
 
     ```commandline
-    root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.4.0-Intro-To-Docker/2.4.1-Docker-Hands-On-Part-1# docker exec -it vul_flask bash
+    root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Docker-Hands-On# docker exec -it vul_flask bash
     root@0c8c0c6a5122:/apps#
     ```
     ![](img/docker-exec.png)
@@ -115,7 +115,7 @@
     ```commandline
     root@0c8c0c6a5122:/apps# exit
     exit
-    root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.4.0-Intro-To-Docker/2.4.1-Docker-Hands-On-Part-1#
+    root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Docker-Hands-On#
     ```
        
     ![](img/exit-docker.png) 
@@ -125,7 +125,7 @@
 * Run `docker ps` to view, all running containers.
 
     ```commandline
-    root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.4.0-Intro-To-Docker/2.4.1-Docker-Hands-On-Part-1# docker ps
+    root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Docker-Hands-On# docker ps
     CONTAINER ID        IMAGE                    COMMAND             CREATED             STATUS              PORTS               NAMES
     0c8c0c6a5122        abhaybhargav/vul_flask   "python app.py"     35 seconds ago      Up 34 seconds       5050/tcp            vul_flask
     ```
@@ -137,7 +137,7 @@
 * Run `docker stop vul_flask` to stop the running container.
 
     ```commandline
-    root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.4.0-Intro-To-Docker/2.4.1-Docker-Hands-On-Part-1# docker stop vul_flask
+    root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Docker-Hands-On# docker stop vul_flask
     vul_flask
     ```
         
@@ -148,7 +148,7 @@
 * Run `docker ps -a` to view all containers including stopped and running containers.
 
     ```commandline
-    root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.4.0-Intro-To-Docker/2.4.1-Docker-Hands-On-Part-1# docker ps -a
+    root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Docker-Hands-On# docker ps -a
     CONTAINER ID        IMAGE                    COMMAND             CREATED             STATUS                            PORTS               NAMES
     0c8c0c6a5122        abhaybhargav/vul_flask   "python app.py"     7 minutes ago       Exited (137) About a minute ago                       vul_flask
     ```
@@ -159,7 +159,7 @@
 * Run `docker rm vul_flask` to remove stopped container.
 
     ```commandline
-    root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.4.0-Intro-To-Docker/2.4.1-Docker-Hands-On-Part-1# docker rm vul_flask
+    root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Docker-Hands-On# docker rm vul_flask
     vul_flask
     ```
     ![](img/docker-rm.png)
@@ -171,7 +171,7 @@
     **Note:** Don't delete image from the VM
     
     ```commandline
-    root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.4.0-Intro-To-Docker/2.4.1-Docker-Hands-On-Part-1# docker rmi abhaybhargav/vul_flask
+    root@we45:~/container_training/Container/Container-Tech-Deep-Dive/Docker-Hands-On# docker rmi abhaybhargav/vul_flask
     Untagged: abhaybhargav/vul_flask:latest
     Untagged: abhaybhargav/vul_flask@sha256:a3fe27c223066aa605e3fca8d49fbe53ab26f39f89ed895485669239f6c433ae
     Deleted: sha256:9ac6b79cd152209c1311c319fd50658cf456ec3291e8b8803006ce3c8a51e506

