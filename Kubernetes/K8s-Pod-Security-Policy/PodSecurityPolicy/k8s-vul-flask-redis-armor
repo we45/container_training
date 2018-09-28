@@ -1,4 +1,4 @@
-﻿#include <tunables/global>
+#include <tunables/global>
 profile k8s-vul-flask-redis-armor flags=(attach_disconnected,mediate_deleted) {
   #include <abstractions/base>
   file,

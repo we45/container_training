@@ -162,7 +162,7 @@ cat > mal-redis.json <<EOF
               },
               {
                 "name": "LISTENER_PORT",
-                "value": "3999"
+                "value": "9090"
               }
             ]
         }]
