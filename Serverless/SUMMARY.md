@@ -1,6 +1,4 @@
-# Serverless
-
--------
+## Serverless
 
 * [Function Data Event Injection](Function-Data-Injection/Event-Injection-S3/README.md)
     * [Event-Injection-S3](Function-Data-Injection/Event-Injection-S3/README.md)

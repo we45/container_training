@@ -28,3 +28,8 @@
 * Open Browser and check the application status `http://localhost`
 
 ![](img/app-status.png)
+
+
+##### Step 5:
+
+* Run `docker-compose down` to stop all running containers.
