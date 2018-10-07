@@ -39,10 +39,10 @@
     
 ##### Step 4: 
 
-* Select an image to be analysed and run `docker save alpine:latest | ./dlayer -n 100 | less`
+* Select an image to be analysed and run `docker save alpine:latest | dlayer -n 100 | less`
 
     ```commandline
-    root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.4.0-Intro-To-Docker/2.4.2-Analysing-Docker-Layers# docker save alpine:latest | ./dlayer -n 100 | less
+    root@we45:~/Labs/2.0.0-Container-Tech-Deep-Dive/2.4.0-Intro-To-Docker/2.4.2-Analysing-Docker-Layers# docker save alpine:latest | dlayer -n 100 | less
     ====================================================================================================
      4.4 MB          $ #(nop) ADD file:25f61d70254b9807a40cd3e8d820f6a5ec0e1e596de04e325f6a33810393e95a in / 
     ====================================================================================================
