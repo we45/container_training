@@ -52,6 +52,7 @@
 * [Serverless](Serverless/SUMMARY.md)
     * [Function Data Event Injection](Serverless/Function-Data-Injection/Event-Injection-S3/README.md)
         * [Event-Injection-S3](Serverless/Function-Data-Injection/Event-Injection-S3/README.md)   
+        * [Server Side Template Injection](Serverless/Function-Data-Injection/Server-Side-Template-Injection/README.md)   
     * [Broken Access Control](Serverless/Broken-Access-Control/SUMMARY.md)
         * [None Signed Token](Serverless/Broken-Access-Control/None-Signed-Token/README.md)
         * [Algorithm Confusion](Serverless/Broken-Access-Control/Algorithm-Confusion/README.md)
@@ -64,4 +65,6 @@
     * [SCA](Serverless/SCA/SUMMARY.md)
         * [NPPM AUDIT](Serverless/SCA/Npm-Audit/README.md)
         * [Safety](Serverless/SCA/Safety/README.md)
+        
+    * [CTF](Serverless/CTF/README.md)
 

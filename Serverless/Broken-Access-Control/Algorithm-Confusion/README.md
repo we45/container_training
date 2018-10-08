@@ -29,67 +29,40 @@
 
 ##### Step 5:
 
-* Open Terminal
+* Open Browser
 
 ![](img/open-browser.png)
 
 
 ##### Step 6:
 
-* Run `node`
+* Open `https://www.base64decode.org/` to decode the guest_public_key
+   
 
-    ```commandline
-    root@we45-VirtualBox:/home/we45# node
-    > 
-    ```
-    
 ##### Step 7:
 
-* Run `const token = <paste your publickey>`
+* Open Terminal
 
-    ```commandline
-    > const token  = "LS0tLS1CRUdJTiBQVUJMSUMgS0VZLS0tLS0KTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUEyZmt4NEVlMkRWRktMdjBGdlBBZwpRTHpQRUJxYnhLZzQxK0QxMThHSCtzYy9ZT3pENVIrNE1sVHVCNUwrT0w3dndqUzNOclp2ZlY4Nm41eWxNTE1HCkkybG0zNHFLVm5adTJkQ0V4UlNFeDZhUkQwUWw0NWowREN4NG5KV2t1all1SHlVcFNUR2RHOEFsNG5XeGRtWW4KTDhVSlJEdldKZHg3YWlLRWxqMWhtK1g0cFZDeERLTFd5R3ArcnphVG9sVnErZUo1WGVvZ0F3Z3lPNTNlb3hhaworRFk0KzYzSjZQN1FmeHU4UVh1NC90ZWRSL3Z6NTk3Q0pFaTVZb01ndVY2N2NIVElmQVYvTjRJdmhaaERkYm1CCmxrZnRDSE1uTEpFa2hDeWV3MGd0Y3U5S2NpVC83NWY3eFdWVEMxYTkrU2FCdW1OZnZleVFKeGNyL2hoeGp2NXIKS1FJREFRQUIKLS0tLS1FTkQgUFVCTElDIEtFWS0tLS0tCg=="    
-    ```
+![](img/Open-Terminal.png)
     
+     
 ##### Step 8:
-    
-* Run ` Buffer.from(token, 'base64').toString();`
-
-    **Note:** Copy the decoded public key.
-
-    ````commandline
-     > Buffer.from(token, 'base64').toString();
-    '-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA2fkx4Ee2DVFKLv0FvPAg\nQLzPEBqbxKg41+D118GH+sc/YOzD5R+4MlTuB5L+OL7vwjS3NrZvfV86n5ylMLMG\nI2lm34qKVnZu2dCExRSEx6aRD0Ql45j0DCx4nJWkujYuHyUpSTGdG8Al4nWxdmYn\nL8UJRDvWJdx7aiKElj1hm+X4pVCxDKLWyGp+rzaTolVq+eJ5XeogAwgyO53eoxak\n+DY4+63J6P7Qfxu8QXu4/tedR/vz597CJEi5YoMguV67cHTIfAV/N4IvhZhDdbmB\nlkftCHMnLJEkhCyew0gtcu9KciT/75f7xWVTC1a9+SaBumNfveyQJxcr/hhxjv5r\nKQIDAQAB\n-----END PUBLIC KEY-----\n'
-    >
-    ````
-
-##### Step 9:
-
-* Run `.exit`
-
-    ```commandline
-    > .exit
-    ```
-    
-##### Step 10:
 
 * Run `touch public_key.pem`
 
     ```commandline
     root@we45-VirtualBox:/home/we45# touch public_key.pem
     ```
-    
-##### Step 11:
+##### Step 9:
 
-* Run `vim public_key.pem`
 
-    **Note:** Paste the copied public key and save. 
-    
-    ```commandline
-    Put image
-    ```
-    
-##### Step 12:
+* Run `vim public_key.pem` 
+
+* Run `esc + i` to paste the decoded public key
+
+* Once it is pasted run `esc + wq` to save the file    
+
+##### Step 10:
 
 * Run `node token_gen.js --file public_key.pem --username admin`
 
@@ -103,7 +76,7 @@
     
     ```
     
-##### Step 13:
+##### Step 11:
 
 * Run `http GET https://3u97ne6l2g.execute-api.us-east-1.amazonaws.com/latest/confusion Authorization:<copied token>`
 
