@@ -51,17 +51,26 @@ Mem: 1994392K used, 55468K free, 2680K shrd, 244K buff, 52960K cached
 
 ##### Step 1:
 
-* Run `docker run --rm -ti --privileged -v /:/rootfs -e "TIMEOUT=5" monitoringartist/docker-killer membomb`
+* Run `docker run --rm -ti --privileged -v /:/rootfs -e "TIMEOUT=5" monitoringartist/docker-killer netbomb`
 
 ```commandline
-root@we45:~# docker run --rm -ti --privileged -v /:/rootfs -e "TIMEOUT=5" monitoringartist/docker-killer membomb
-membomb - duration 5s
-Test: excessive memory (RAM+swap) utilization
-Mem: 743292K used, 1306568K free, 2640K shrd, 5532K buff, 158656K cached
-Mem: 1996980K used, 52880K free, 2676K shrd, 100K buff, 28592K cached
-Mem: 1989836K used, 60024K free, 2556K shrd, 100K buff, 25408K cached
-Mem: 1996808K used, 53052K free, 1628K shrd, 100K buff, 24812K cached
-Mem: 1996604K used, 53256K free, 248K shrd, 100K buff, 23892K cached
+root@we45:~# docker run --rm -ti --privileged -v /:/rootfs -e "TIMEOUT=5" monitoringartist/docker-killer netbomb
+netbomb - duration 5s
+Test: excessive network utilization - iperf against public iperf server
+Used command: iperf -c iperf.scottlinux.com -t 4 -i 1 -p 5201 -u
+------------------------------------------------------------
+Client connecting to iperf.scottlinux.com, UDP port 5201
+Sending 1470 byte datagrams, IPG target: 11215.21 us (kalman adjust)
+UDP buffer size:  208 KByte (default)
+------------------------------------------------------------
+[  3] local 172.17.0.2 port 50153 connected with 45.33.39.39 port 5201
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 1.0 sec   131 KBytes  1.07 Mbits/sec
+[  3]  1.0- 2.0 sec   128 KBytes  1.05 Mbits/sec
+[  3]  2.0- 3.0 sec   128 KBytes  1.05 Mbits/sec
+[  3]  3.0- 4.0 sec   128 KBytes  1.05 Mbits/sec
+[  3]  0.0- 4.0 sec   514 KBytes  1.05 Mbits/sec
+[  3] Sent 358 datagrams
 /test.sh: line 101:     6 Killed                  timeout -t ${TIMEOUT} -s KILL bash -c $@
 ```
 
