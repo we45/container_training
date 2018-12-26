@@ -1,4 +1,4 @@
-# **`Monitoring - prometheus-grafana`**
+# **`Monitoring with Prometheus + Grafana`**
 
 
 Step 1: Navigate to prometheus+grafana directory

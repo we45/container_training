@@ -1,16 +1,20 @@
-## Container Security, Orchestration and Serverless Training Manual
+# [Container Security, Orchestration and Serverless Training Manual](https://github.com/we45/container_training)
 
-Brought to you by [we45](https://www.we45.com)
+## Content
 
-![](img/we45logo.jpg)
 
-### Contents
+1. ##### [Containers](Container/README.md)
 
-1. [Containers](Container/SUMMARY.md)
+2. ##### [Kuberenetes](Kubernetes/README.md)
 
-2. [Kuberenetes](Kubernetes/SUMMARY.md)
+3. ##### [Serverless](Serverless/README.md)
 
-3. [Serverless](Serverless/SUMMARY.md)
+
+-----
+
+* ##### Brought to you by [we45](https://www.we45.com)
+
+    ![](img/we45logo.jpg)
 
 
 #### Contact Us
