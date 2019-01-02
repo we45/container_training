@@ -109,7 +109,7 @@ nc -l 1337
 ```
 Now you can interact with your target app and backend K8s cluster
 
-**NOTE: Do NOT use the clear or Commd/Ctrl+C key. you will lose access to the shell**
+**NOTE: Do NOT use the clear or Command/Ctrl+C key. you will lose access to the shell**
 
 ### Pivoting to K8s cluster
 
