@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: sample-app
 spec:
-  replicas: 5
+  replicas: 2
   template:
     metadata:
       labels:
@@ -24,7 +24,7 @@ spec:
         imagePullPolicy: Always
         env:
         - name: VAULT_ROLE_ID
-          value: ${VAULT_ROLE_ID}
+          value: Replace_with_$VAULT_ROLE_ID_Value_Here
         volumeMounts:
         - name: vault-token
           mountPath: /var/run/secrets/boostport.com

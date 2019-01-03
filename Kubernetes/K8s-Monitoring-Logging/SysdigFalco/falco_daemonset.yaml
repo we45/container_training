@@ -18,7 +18,7 @@ spec:
           image: sysdig/falco:latest
           securityContext:
             privileged: true
-          args: [ "/usr/bin/falco", "-pk", "-o", "json_output=true", "-o", "program_output.enabled=true", "-o",  "program_output.program=jq '{text: .output}' | curl -d @- -X POST http://192.168.122.1:9090"]
+          args: [ "/usr/bin/falco", "-pk", "-o", "json_output=true", "-o", "program_output.enabled=true", "-o",  "program_output.program=jq '{text: .output}' | curl -d @- -X POST http://SERVER-IP:9090"]
           volumeMounts:
             - mountPath: /host/var/run/docker.sock
               name: docker-socket

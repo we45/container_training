@@ -12,22 +12,22 @@ Step 2: Create a seperate K8s namespace named 'monitoring' by running `kubectl c
 
 
 Step 3: Create ClusterRole, ConfigMap, prometheus service and deployment bu running:
-    
+
     kubectl create -f  clusterRole.yaml
-    
+
     kubectl create -f config-map.yaml
-    
+
     kubectl create -f prometheus.yaml
 
 ![](img/prometheus-grafana-3.png)
-    
+
 
 Step 4: Verify by running
-    
+
     kubectl get configmap -n monitoring
-    
+
     kubectl get deployments -n monitoring
-    
+
     kubectl get svc -n monitoring
 
 ![](img/prometheus-grafana-4.png)
@@ -76,7 +76,4 @@ Step 12: Change name if necessary, Select LocalCluster(name given in Step 9) as 
 Step 13: Dashboard with resouce usage statistics should show up. It is possible to select Namespace and Pod from the drop down as well.
 
 ![](img/prometheus-grafana-13.png)
-
-
-
 

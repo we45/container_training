@@ -1,60 +1,104 @@
 # **`Role Based Access Control`**
 
 
-Step 1: Generate an ssl key by running `sudo openssl genrsa -out restricteduser.key 4096`
+##### Step 1: 
 
-![](img/rbac-1.png)
+* Navigate to `RoleBasedAccessControl` directory.
 
+```bash
+cd /root/container_training/Kubernetes/K8s-RBAC/RoleBasedAccessControl
+```
 
-Step 2: Generate a certificate using the key created in Step 1 by running `sudo openssl req -new -key restricteduser.key -out restricteduser.csr -subj '/CN=restricteduser/O=developer'`
+##### Step 2: 
 
-![](img/rbac-2.png)
+* Generate an ssl key for `restricteduser`
 
-
-Step 3: Generate a self-signed key for minikube by running `sudo openssl x509 -req -in restricteduser.csr -CA ~/.minikube/ca.crt -CAkey ~/.minikube/ca.key -CAcreateserial -out restricteduser.crt -days 365`
-
-![](img/rbac-3.png)
-
-
-Step 4: Create a namespace by running `sudo kubectl create namespace restricted-namespace`
-
-![](img/rbac-4.png)
+```bash
+sudo openssl genrsa -out restricteduser.key 4096
+```
 
 
-Step 5: Set credentials and context for the user `restricteduser` by running
-    
-    kubectl config set-credentials restricteduser --client-certificate=restricteduser.crt  --client-key=restricteduser.key
-    
-    kubectl config set-context restricteduser-context --cluster=minikube --namespace=restricted-namespace --user=restricteduser
+##### Step 3:
 
-![](img/rbac-5.png)
+* Generate a certificate using they key created in `Step 1`
 
-
-Step 6: Try fetching the list of pods with restricteduser-context by running `kubectl --context=restricteduser-context get pods`
-
-![](img/rbac-6.png)
+```bash
+sudo openssl req -new -key restricteduser.key -out restricteduser.csr -subj '/CN=restricteduser/O=developer'
+```
 
 
-Step 7: Create a Role and RoleBinding in restricted-namespace by running 
-    
-    kubectl -n restricted-namespace create -f role-deployment-manager.yaml
-    kubectl -n restricted-namespace create -f rolebinding-deployment-manager.yaml
+##### Step 4:
 
-![](img/rbac-7.png)
+* Generate a self-signed key for k8s
+
+```bash
+sudo openssl x509 -req -in restricteduser.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out restricteduser.crt -days 365
+```
+
+##### Step 5:
+
+* Create a restricted namespace
+
+```bash
+kubectl create namespace restricted-namespace
+```
+
+##### Step 6:
+
+* Set credentials and context for the user `restricteduser`
+
+```bash
+kubectl config set-credentials restricteduser --client-certificate=restricteduser.crt  --client-key=restricteduser.key
+
+kubectl config set-context restricteduser-context --cluster=kubernetes --namespace=restricted-namespace --user=restricteduser
+```
 
 
-Step 8: Run a pod using restricteduser-context `kubectl --context=restricteduser-context run --image nginx:alpine nginx`
+##### Step 7:
 
-![](img/rbac-8.png)
+* Try fetching the list of pods with `restricteduser-context`
 
+```bash
+kubectl --context=restricteduser-context get pods
+```
 
-Step 9: Using the restricteduser-context, try deleting the pod by running 
+* It will show the following Error: `Error from server (Forbidden): pods is forbidden: User "restricteduser" cannot list pods in the namespace "restricted-namespace"`
 
-    kubectl --context=restricteduser-context get pods 
-    
-    kubectl --context=restricteduser-context delete pod <pod_name> 
+##### Step 8:
 
-![](img/rbac-9.png)
+* Create a Role and RoleBinding in `restricted-namespace`
 
+```bash
+kubectl -n restricted-namespace create -f role-deployment-manager.yaml
 
+kubectl -n restricted-namespace create -f rolebinding-deployment-manager.yaml
+```
 
+##### Step 9:
+
+* Run a pod using `restricteduser-context`
+
+```bash
+kubectl --context=restricteduser-context run --image nginx:alpine nginx
+```
+
+##### Step 10:
+
+* Using the restricteduser-context, try deleting the pod running
+
+```bash
+kubectl --context=restricteduser-context get pods 
+
+kubectl --context=restricteduser-context delete pod <pod_name> 
+```
+
+* It will show the following Error: `Error from server (Forbidden): pods "nginx-6fc74ccb78-c5ctm" is forbidden: User "restricteduser" cannot delete pods in the namespace "restricted-namespace"`
+ 
+
+##### Step 11
+
+* To Remove the `Role`, `RoleBinding` and the `Pod`, delete the `restricted-namespace`. 
+
+```bash
+kubectl delete ns restricted-namespace
+```

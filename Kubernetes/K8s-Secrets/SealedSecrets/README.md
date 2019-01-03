@@ -1,19 +1,75 @@
-## Kubernetes Sealed Secrets - Kubeseal
+# Kubernetes Sealed Secrets - Kubeseal
 
 ##### Step 1:
 
-* Make sure minikube is running `minikube status`
+* Navigate to the `SealedSecrets` directory
+
+```bash
+cd /root/container_training/Kubernetes/K8s-Secrets/SealedSecrets
+```
 
 ##### Step 2:
 
-* Ensure you are in the `SealedSecrets` directory
+* Ensure that K8s is running
 
-* Run `kubeseal <mysecret.json >mysealedsecret.json`
+```bash
+kubectl get nodes
+```
 
-* Check the file with `cat mysealedsecret.json`
+##### Step 3:
 
-* Run `kubectl create -f mysealedsecret.json`
+* Create `SealedSecret` controller and Custom Resource Definition
 
-* Run `kubectl get secrets`
+```bash
+kubectl create -f controller.yaml
 
-* To delete the sealed secret, run `kubectl delete -f mysealedsecret.json`
+kubectl create -f sealedsecret-crd.yaml
+```
+
+##### Step 4:
+
+* Seal the existing secret with `kubeseal`
+
+```bash
+kubeseal <mysecret.json >mysealedsecret.json
+```
+
+* Check the sealed-secret file 
+
+```bash
+cat mysealedsecret.json
+```
+
+##### Step 5:
+
+* Create the Sealed-Secret
+
+```bash
+kubectl create -f mysealedsecret.json
+```
+
+* Check the created Secret
+
+```bash
+kubectl get secrets
+```
+
+
+##### Step 6:
+
+* Delete the created sealed secret 
+
+```bash
+kubectl delete -f mysealedsecret.json
+```
+
+
+##### Step 7:
+
+* Stop SealedSecret Controller and Custom Resource Definition
+
+```bash
+kubectl delete -f controller.yaml
+
+kubectl delete -f sealedsecret-crd.yaml
+```

@@ -1,4 +1,4 @@
-## Dynamic Secrets with Vault
+# Dynamic Secrets with Vault
 
 
 ##### Step 1:
@@ -7,7 +7,9 @@
 
 ```commandline
 kubectl create -f vault.yaml
+
 kubectl get deployment
+
 kubectl get svc
 ```
 
@@ -16,14 +18,13 @@ kubectl get svc
 
 ##### Step 2:
 
-* Setup `port-forwarding` to vault running on the cluster.
+* Set IP of Vault Service as an environment variable.
 
 ```commandline
-vaultPod=$(kubectl get pod | grep "^vault*" |awk '{print $1}')
-nohup kubectl port-forward "$vaultPod" 8200 &
-```
+VaultIP=http://$(kubectl get svc vault -o yaml | grep "clusterIP" |awk '{print $2}'):8200
 
-* Confirm that port-forwarding has been enabled by accessing `http://127.0.0.1:8200/ui` on the browser
+echo $VaultIP
+```
 
 ######  * Note: Vault is available on http://vault:8200 for other kube pods.
 
@@ -33,7 +34,7 @@ nohup kubectl port-forward "$vaultPod" 8200 &
 * Login to `Vault`
 
 ```commandline
-vault login vault-root-token
+vault login -address $VaultIP vault-root-token
 ```
 
 
@@ -42,8 +43,9 @@ vault login vault-root-token
 * Create a Root CA that expires in a year and generate the root cert.
 
 ```commandline
-vault secrets enable -path=root-ca -max-lease-ttl=8760h pki
-vault write root-ca/root/generate/internal common_name="Root CA" ttl=8760h exclude_cn_from_sans=true
+vault secrets enable -address $VaultIP  -path=root-ca -max-lease-ttl=8760h pki
+
+vault write -address $VaultIP root-ca/root/generate/internal common_name="Root CA" ttl=8760h exclude_cn_from_sans=true
 ```
 
 
@@ -52,7 +54,7 @@ vault write root-ca/root/generate/internal common_name="Root CA" ttl=8760h exclu
 * Setup URLs on Vault
 
 ```commandline
-vault write root-ca/config/urls issuing_certificates="http://vault:8200/v1/root-ca/ca" crl_distribution_points="http://vault:8200/v1/root-ca/crl"
+vault write -address $VaultIP root-ca/config/urls issuing_certificates="http://vault:8200/v1/root-ca/ca" crl_distribution_points="http://vault:8200/v1/root-ca/crl"
 ```
 
 
@@ -61,7 +63,7 @@ vault write root-ca/config/urls issuing_certificates="http://vault:8200/v1/root-
 * Create the Intermediate CA that expires in 180 days
 
 ```commandline
-vault secrets enable -path=intermediate-ca -max-lease-ttl=4320h pki
+vault secrets enable -address $VaultIP -path=intermediate-ca -max-lease-ttl=4320h pki
 ```
 
 
@@ -70,8 +72,9 @@ vault secrets enable -path=intermediate-ca -max-lease-ttl=4320h pki
 * Generate a Certificate Signing Request and ask the Root to sign it
 
 ```commandline
-vault write -format=json intermediate-ca/intermediate/generate/internal common_name="Intermediate CA" ttl=4320h exclude_cn_from_sans=true | jq -r .data.csr > intermediate.csr
-vault write -format=json root-ca/root/sign-intermediate csr=@intermediate.csr use_csr_values=true exclude_cn_from_sans=true format=pem_bundle | jq -r .data.certificate | sed -e :a -e '/^\n*$/{$d;N;};/\n$/ba' > signed.crt
+vault write -address $VaultIP -format=json intermediate-ca/intermediate/generate/internal common_name="Intermediate CA" ttl=4320h exclude_cn_from_sans=true | jq -r .data.csr > intermediate.csr
+
+vault write -address $VaultIP -format=json root-ca/root/sign-intermediate csr=@intermediate.csr use_csr_values=true exclude_cn_from_sans=true format=pem_bundle | jq -r .data.certificate | sed -e :a -e '/^\n*$/{$d;N;};/\n$/ba' > signed.crt
 ```
 
 
@@ -80,8 +83,9 @@ vault write -format=json root-ca/root/sign-intermediate csr=@intermediate.csr us
 * Send the Signed certificate back to Vault and Setup the URLs
 
 ```commandline
-vault write intermediate-ca/intermediate/set-signed certificate=@signed.crt
-vault write intermediate-ca/config/urls issuing_certificates="http://vault:8200/v1/intermediate-ca/ca" crl_distribution_points="http://vault:8200/v1/intermediate-ca/crl"
+vault write -address $VaultIP intermediate-ca/intermediate/set-signed certificate=@signed.crt
+
+vault write -address $VaultIP intermediate-ca/config/urls issuing_certificates="http://vault:8200/v1/intermediate-ca/ca" crl_distribution_points="http://vault:8200/v1/intermediate-ca/crl"
 ```
 
 
@@ -90,7 +94,7 @@ vault write intermediate-ca/config/urls issuing_certificates="http://vault:8200/
 * Enable the AppRole backend on Vault
 
 ```commandline
-vault auth enable approle
+vault auth enable -address $VaultIP approle
 ```
 
 
@@ -99,8 +103,9 @@ vault auth enable approle
 * Create a role to allow Kubernetes-Vault to generate certificates and send the policy to Vault
 
 ```commandline
-vault write intermediate-ca/roles/kubernetes-vault allow_any_name=true max_ttl="24h"
-vault policy write kubernetes-vault policy-kubernetes-vault.hcl
+vault write -address $VaultIP intermediate-ca/roles/kubernetes-vault allow_any_name=true max_ttl="24h"
+
+vault policy write -address $VaultIP kubernetes-vault policy-kubernetes-vault.hcl
 ```
 
 
@@ -109,16 +114,27 @@ vault policy write kubernetes-vault policy-kubernetes-vault.hcl
 * Create a token role for Kubernetes-Vault that generates a 6 hour periodic token and generate token for Kubernetes-Vault and AppID
 
 ```commandline
-vault write auth/token/roles/kubernetes-vault allowed_policies=kubernetes-vault period=6h
-CLIENTTOKEN=$(vault token-create -format=json -role=kubernetes-vault | jq -r .auth.client_token)
+vault write -address $VaultIP auth/token/roles/kubernetes-vault allowed_policies=kubernetes-vault period=6h
+
+CLIENTTOKEN=$(vault token-create -address $VaultIP -format=json -role=kubernetes-vault | jq -r .auth.client_token)
+
+echo $CLIENTTOKEN
 ```
 
 ##### Step 12:
 
-* In `kubernetes-vault.yaml` replace the value of the token with CLIENTTOKEN and create a deployment
+* In `kubernetes-vault.yaml` on `line 54`, replace the value of the token with that of `$CLIENTTOKEN` fetched in the last step and create a deployment.
+
+EXAMPLE:
+
+```yaml
+  kubernetes-vault.yml: |-
+    vault:
+      addr: http://vault:8200
+      token: s.5mEiuuaZoSUyfpZ6WC16mrCX
+```
 
 ```commandline
-echo $CLIENTTOKEN
 kubectl create -f kubernetes-vault.yaml
 ```
 
@@ -128,31 +144,45 @@ kubectl create -f kubernetes-vault.yaml
 * Set up an app-role for sample-app that generates a periodic 6 hour token and add new rules to kubernetes-vault policy
 
 ```commandline
-vault write auth/approle/role/sample-app secret_id_ttl=90s period=6h secret_id_num_uses=1 policies=kubernetes-vault,default
-vault policy write kubernetes-vault policy-sample-app.hcl
+vault write -address $VaultIP auth/approle/role/sample-app secret_id_ttl=90s period=6h secret_id_num_uses=1 policies=kubernetes-vault,default
+
+vault policy write -address $VaultIP kubernetes-vault policy-sample-app.hcl
 ```
 
 * Get the Apps role-id
 
 ```commandline
-VAULT_ROLE_ID=$(vault read -format=json auth/approle/role/sample-app/role-id | jq -r .data.role_id)
+VAULT_ROLE_ID=$(vault read -address $VaultIP -format=json auth/approle/role/sample-app/role-id | jq -r .data.role_id)
+
+echo $VAULT_ROLE_ID
 ```
 
 ##### Step 14:
 
-* Replace the value of `VAULT_ROLE_ID` in `sample-app.yaml` and create the deployment
+* In `sample-app.yaml` on `line 27`, replace the value of `VAULT_ROLE_ID` with the value of `$VAULT_ROLE_ID` fetched in the previous step and create the deployment
+
+EXAMPLE:
+
+```yaml
+  imagePullPolicy: Always
+    env:
+      - name: VAULT_ROLE_ID
+        value: 23c14dda-11d7-054d-bc7a-5e4fc044c946
+```
 
 ```commandline
 echo $VAULT_ROLE_ID
+
 kubectl apply -f sample-app.yaml
 ```
 
 ##### Step 15:
 
-* Observe the logs of each `sample-app` pod running. It can be seen that each pod receives a unique token from vault
+* Observe the logs of each `sample-app` pod once it's running. It can be seen that each pod receives a unique token from vault.
 
 ```commandline
 kubectl get pods
+
 kubectl logs sample-app-xxxxxxxx
 ```
 
@@ -162,11 +192,4 @@ kubectl logs sample-app-xxxxxxxx
 
 ```commandline
 kubectl delete -f vault.yaml -f kubernetes-vault.yaml -f sample-app.yaml
-```
-
-* Kill the `port-forwarding` process
-
-```commandline
-pid=$(pgrep -f "kubectl port-forward" | grep 8200)
-kill $pid
 ```

@@ -1,16 +1,26 @@
-## Resource Quotas and Limits
+# Resource Quotas and Limits
 
 ##### Step 1:
 
-* Make sure minikube is running `minikube status`
+* Navigate to the `ResourceQuota_Limit` directory
+
+```bash
+cd /root/container_training/Kubernetes/K8s-ResourceQuota/ResourceQuota_Limit
+```
 
 ##### Step 2:
 
-* Navigate to the `ResourceQuota_Limit` directory
+* Create a pod on the `default` namespace.
 
-* Run `kubectl create -f nginx-basic-limit.yaml` to create a Pod on the default namespace
+```bash
+kubectl create -f nginx-basic-limit.yaml
+```
 
-* Run `kubectl get pods` to ensure that the status of the pod is set to 'Running'
+* Ensure that the status of the pod is set to `Running`
+
+```bash
+kubectl get pods
+```
 
 ##### Step 3:
 
@@ -21,4 +31,6 @@
 * Stop it and run: `kubectl exec -it nginx-resource -- stress --cpu 1 --io 1 --vm 2 --vm-bytes 200M`
 
 * Stop it and run `kubectl exec -it nginx-resource -- stress --cpu 1 --io 1 --vm 2 --vm-bytes 400M`
+
+* It can be observed that the stress test fails with `exit code 1` at 400M because of the limit specified in Pod Spec. 
 

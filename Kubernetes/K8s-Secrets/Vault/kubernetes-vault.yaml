@@ -51,7 +51,7 @@ data:
   kubernetes-vault.yml: |-
     vault:
       addr: http://vault:8200
-      token: ${CLIENTTOKEN}
+      token: Replace_with_$CLIENTTOKEN_Here
 
     kubernetes:
       watchNamespace: ${KUBERNETES_NAMESPACE}
@@ -69,7 +69,7 @@ metadata:
   name: kubernetes-vault
   namespace: default
 spec:
-  replicas: 3
+  replicas: 2
   template:
     metadata:
       labels:
