@@ -8,4 +8,4 @@ spec:
     protocol: TCP
   selector:
     app: ngflask-redis
-  type: NodePort
+  type: ClusterIP
