@@ -95,4 +95,39 @@ root@we45:~$ clean-docker
 
 * press `y` to select `yes` and the window shuts down. Do the same with the other tmux session as well
 
-### Docker Socket Breakout
+### Host Network
+
+* Check if `ufw` is enabled on the host machine by running `ufw status`
+
+```commandline
+root@we45:~# ufw status
+Status: inactive
+```
+
+* Enable `ufw` by running `ufw enable` and `ufw allow ssh`
+
+* Run `docker run -d -p 5000:5000 --privileged --net=host abhaybhargav/vul_flask`
+
+```
+docker run -d -p 5000:5000 --privileged --net=host abhaybhargav/vul_flask
+WARNING: Published ports are discarded when using host network mode
+de08041d12e0ed8f4aa0ee3ceeef65c760baee2b9d1c839a89d5ba642a506d03
+```
+
+* Now run `docker ps` and copy the `CONTAINER_ID` of the running container
+
+```
+[root@container-training-centos ~]# docker ps
+CONTAINER ID        IMAGE                    COMMAND             CREATED             STATUS              PORTS               NAMES
+de08041d12e0        abhaybhargav/vul_flask   "python app.py"     3 seconds ago       Up 2 seconds                            dreamy_ptolemy
+```
+
+* Now run `docker exec -it <container ID> /bin/bash` you should now be in the shell environment in the container
+
+* Run `apt update && apt install -y ufw` to install the firewall program
+
+* Run `ufw status` and you should see that the firewall is active.
+
+* Now run `ufw disable` to disable the firewall from the Container
+
+* Run `exit` to exit the docker shell and run `clean-docker`
