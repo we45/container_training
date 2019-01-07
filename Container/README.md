@@ -1,60 +1,42 @@
 # [Containers](README.md)
 
-* ###### [Container Tech Deep-Dive](Container-Tech-Deep-Dive/README.md)
 
-    * [Union Mount File System](Container-Tech-Deep-Dive/Union-Mount-File-System/README.md)
-    
-    * [Network Namespace](Container-Tech-Deep-Dive/Network-Namespace/README.md)
-    
-    * [Intro to Docker](Container-Tech-Deep-Dive/Docker-Hands-On/README.md)
-    
-    * [Analysing Docker Images](Container-Tech-Deep-Dive/Analysing-Docker-Image/README.md)
+##### Container Tech Deep-Dive
+
+* [Introduction to Docker](Docker-Hands-On/README.md)
+
+* [Dive - Analysing Docker Images](dive/README.md)
 
 
-* ###### [Container Attacks](Container-Attacks/README.md)
+##### Container Attacks
 
-    * [Authentication Attacks against Host](Container-Attacks/Authentication-Attacks-against-Host/README.md)
+* [Docker Daemon Configuration](Docker-Daemon-Configuration/README.md)
 
-    * [Docker Daemon Direct Access](Container-Attacks/Docker-Daemon-Direct-Access/README.md)
+* [Container Breakout](container-breakout/README.md)
 
-    * [Docker Daemon Configuration](Container-Attacks/Docker-Daemon-Configuration/README.md)
-
-    * [Host Network Configuration](Container-Attacks/Host-Network-Configuration/README.md)
-
-    * [Vulnerable Libraries - ShellShock](Container-Attacks/Vulnerable-Libraries-ShellShock/README.md)
-
-    * [Denial of Service](Container-Attacks/Denial-of-Service/README.md)
+* [Trojanized Docker Images](Trojanized-Docker-Image/README.md)
 
 
-* ###### [Container Security Deep-Dive](Container-Security-Deep-Dive/README.md)
+##### Container Security Deep-Dive
 
-    * [Limiting Docker Capabilities](Container-Security-Deep-Dive/Limiting-Docker-Capabilities/README.md)
-
-    * [SecComp](Container-Security-Deep-Dive/SecComp/README.md)
-
-    * [AppArmor](Container-Security-Deep-Dive/AppArmor/README.md)
-
-    * [HealthCheck](Container-Security-Deep-Dive/HealthCheck/README.md)
+* [Limiting Docker Capabilities](Limiting-Docker-Capabilities/README.md)
 
 
-* ###### [Container Security Mitigations](Container-Security-Mitigations/README.md)
+##### Container Security Mitigations
 
-    * [Trusted Image(s)](Container-Security-Mitigations/Trusted-Images/README.md)
+* [Trusted Image(s)](Trusted-Images/README.md)
 
-    * [Docker Monitoring](Container-Security-Mitigations/Docker-Monitoring/README.md)
+* [Docker Monitoring](Docker-Monitoring/README.md)
 
+* [Resource Management](Resource-Management/README.md)
 
-* ###### [Container Vulnerability Assessment](Container-Vulnerability-Assessment/README.md)
-
-    * [Clair](Container-Vulnerability-Assessment/Clair/README.md)
-
-    * [Dagda](Container-Vulnerability-Assessment/Dagda/README.md)
-
-    * [Docker-bench](Container-Vulnerability-Assessment/Docker-bench/README.md)
-
-    * [Anchore](Container-Vulnerability-Assessment/Anchore/README.md)
+* Distroless
 
 
-* ###### [Container Orchestrators](Container-Orchestrators/README.md)
+##### Container Vulnerability Assessment
 
-    * [Docker Compose](Container-Orchestrators/Docker-Compose/README.md)
+* [Clair](Clair/README.md)
+
+* [Docker-bench](Docker-bench/README.md)
+
+* [Anchore](Anchore/README.md)
