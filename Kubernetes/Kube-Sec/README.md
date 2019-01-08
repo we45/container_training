@@ -8,7 +8,7 @@
 * Navigate to the `Kube-Sec` directory
 
 ```bash
-cd /root/container_training/Kubernetes/K8s-Vulnerability-Assessment/Kube-Sec
+cd /root/container_training/Kubernetes/Kube-Sec
 ```
 
 

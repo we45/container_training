@@ -6,7 +6,7 @@
 * Navigate to the `Kube-Bench` directory
 
 ```bash
-cd /root/container_training/Kubernetes/K8s-Vulnerability-Assessment/Kube-Bench
+cd /root/container_training/Kubernetes/Kube-Bench
 ```
 
 

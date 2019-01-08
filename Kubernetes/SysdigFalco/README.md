@@ -6,7 +6,7 @@
 * Navigate to the `SysdigFalco` directory
 
 ```bash
-cd /root/container_training/Kubernetes/K8s-Monitoring-Logging/SysdigFalco
+cd /root/container_training/Kubernetes/SysdigFalco
 ```
 
 ##### Step 2: 

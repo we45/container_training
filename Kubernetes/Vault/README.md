@@ -3,9 +3,11 @@
 
 ##### Step 1:
 
-* Deploy the Vault Service
+* Navigate to `Vault` directory and deploy the Vault Service
 
 ```commandline
+cd /root/container_training/Kubernetes/Vault
+
 kubectl create -f vault.yaml
 
 kubectl get deployment

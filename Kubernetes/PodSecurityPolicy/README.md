@@ -59,7 +59,7 @@ profile k8s-vul-flask-redis-armor flags=(attach_disconnected,mediate_deleted) {
 * Navigate to the `PodSecurityPolicy` directory.
 
 ```bash
-cd /root/container_training/Kubernetes/K8s-Pod-Security-Policy/PodSecurityPolicy
+cd /root/container_training/Kubernetes/PodSecurityPolicy
 ```
 
 

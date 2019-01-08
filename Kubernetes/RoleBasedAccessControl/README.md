@@ -6,7 +6,7 @@
 * Navigate to `RoleBasedAccessControl` directory.
 
 ```bash
-cd /root/container_training/Kubernetes/K8s-RBAC/RoleBasedAccessControl
+cd /root/container_training/Kubernetes/RoleBasedAccessControl
 ```
 
 ##### Step 2: 
@@ -89,7 +89,7 @@ kubectl --context=restricteduser-context run --image nginx:alpine nginx
 ```bash
 kubectl --context=restricteduser-context get pods 
 
-kubectl --context=restricteduser-context delete pod <pod_name> 
+kubectl --context=restricteduser-context delete pod <pod_name>
 ```
 
 * It will show the following Error: `Error from server (Forbidden): pods "nginx-6fc74ccb78-c5ctm" is forbidden: User "restricteduser" cannot delete pods in the namespace "restricted-namespace"`

@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: vul-flask
+spec:
+  replicas: 2
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: vul-flask
+    spec:
+      containers:
+      - image: abhaybhargav/vul_flask
+        imagePullPolicy: Always
+        name: vul-flask
+        ports:
+        - containerPort: 5050
+        securityContext:
+          # the privileged flag will be marked as a critical risk
+          privileged: true
+          readOnlyRootFilesystem: true

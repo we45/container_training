@@ -5,7 +5,7 @@
 * Navigate to the `SealedSecrets` directory
 
 ```bash
-cd /root/container_training/Kubernetes/K8s-Secrets/SealedSecrets
+cd /root/container_training/Kubernetes/SealedSecrets
 ```
 
 ##### Step 2:

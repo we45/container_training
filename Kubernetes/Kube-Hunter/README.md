@@ -8,7 +8,7 @@
 * Navigate to the `Kube-Hunter` directory that has `kubehunter.py` file.
 
 ```bash
-cd /root/container_training/Kubernetes/K8s-Vulnerability-Assessment/Kube-Hunter
+cd /root/container_training/Kubernetes/Kube-Hunter
 ```
 
 

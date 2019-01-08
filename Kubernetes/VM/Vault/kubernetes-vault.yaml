@@ -1,0 +1,94 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kubernetes-vault
+  namespace: default
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: kubernetes-vault
+rules:
+- apiGroups: [""]
+  resources:
+  - pods
+  verbs: ["list", "watch"]
+- apiGroups: [""]
+  resources:
+  - endpoints
+  verbs: ["get"]
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1beta1
+metadata:
+  name: kubernetes-vault
+subjects:
+- kind: ServiceAccount
+  name: kubernetes-vault
+  namespace: default
+roleRef:
+  kind: ClusterRole
+  name: kubernetes-vault
+  apiGroup: rbac.authorization.k8s.io
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: kubernetes-vault
+  labels:
+    run: kubernetes-vault
+spec:
+  clusterIP: None
+  selector:
+    run: kubernetes-vault
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kubernetes-vault
+data:
+  kubernetes-vault.yml: |-
+    vault:
+      addr: http://vault:8200
+      token: Replace_with_$CLIENTTOKEN_Here
+
+    kubernetes:
+      watchNamespace: ${KUBERNETES_NAMESPACE}
+      serviceNamespace: ${KUBERNETES_NAMESPACE}
+      service: kubernetes-vault
+
+    prometheus:
+      tls:
+        vaultCertBackend: intermediate-ca
+        vaultCertRole: kubernetes-vault
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: kubernetes-vault
+  namespace: default
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        run: kubernetes-vault
+    spec:
+      serviceAccountName: kubernetes-vault
+      containers:
+      - name: kubernetes-vault
+        image: boostport/kubernetes-vault
+        imagePullPolicy: Always
+        env:
+        - name: KUBERNETES_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        volumeMounts:
+        - name: config-volume
+          mountPath: /kubernetes-vault
+      volumes:
+      - name: config-volume
+        configMap:
+          name: kubernetes-vault
