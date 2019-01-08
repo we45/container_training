@@ -2,7 +2,7 @@
 
 * ######  VM Instructions
 
-###### Run the Steps in `Initial-Setup`
+###### Important: Run the Steps in `Initial-Setup`
 
 ------------------------------
 
@@ -29,8 +29,6 @@
 ##### Kubernetes - Secrets
 
 * [KubeSeal - Sealed Secrets](SealedSecrets/README.md)
-
-* [Vault](Vault/README.md)
 
 
 ##### Kubernetes - Vulnerability Assessment

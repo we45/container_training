@@ -2,24 +2,12 @@
 
 ##### Step 1:
 
-* Run the following command to get the latest files
+* Run the following command(s) to get the latest files
 
 ```bash
 cd /home/we45/container_training && git pull
-```
 
-##### Step 2:
+echo "hostname -I | cut -d' ' -f1" > /usr/local/bin/vmip && chmod +x /usr/local/bin/vmip
 
-* Navigate to the `Initial-Setup` directory
-
-```bash
-cd /home/we45/container_training/Kubernetes/VM/Initial-Setup
-```
-
-##### Step 3:
-
-* Execute the `update` file
-
-```bash
-./update.sh
+kubectl delete --all pods -n default
 ```
