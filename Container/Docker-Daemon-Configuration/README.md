@@ -23,7 +23,7 @@
 * Navigate to the directory containing the malicious script.
 
     ```commandline
-    cd /home/we45/container_training/Container/Container-Attacks/Docker-Daemon-Configuration
+    cd /root/labs/container_training/Container/Docker-Daemon-Configuration
     ```
 
 * Activate the python virtual environment and run the script that will launch a malicious container via. the docker API.

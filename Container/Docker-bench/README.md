@@ -15,7 +15,7 @@
 * Navigate to Docker-bench Lab Folder
 
 ```commandline
-cd /home/we45/container_training/Container/Container-Vulnerability-Assessment/Docker-bench
+cd /root/labs/container_training/Container/Docker-bench
 ```
 
 ![](img/cd-path.png)

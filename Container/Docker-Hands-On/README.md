@@ -8,10 +8,10 @@
 
 ##### Step 2:
 
-*  **cd** into  `/home/we45/container_training/Container/Container-Tech-Deep-Dive/Docker-Hands-On`
+*  **cd** into  `/root/labs/container_training/Container/Docker-Hands-On`
 
     ```commandline
-    cd /home/we45/container_training/Container/Container-Tech-Deep-Dive/Docker-Hands-On
+    cd /root/labs/container_training/Container/Docker-Hands-On
     ```
 
 ##### Step 3:

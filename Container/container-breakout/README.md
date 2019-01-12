@@ -2,7 +2,7 @@
 
 ### Volume Mounts
 
-* ssh into the container virtual lab:
+* ssh into the container virtual lab or open Terminal in the VM
 
     ```
     ssh root@<IPAddrGivenToYou>

@@ -8,10 +8,10 @@
 
 ##### Step 2:
 
-*  **cd** into  `/home/we45/container_training/Container/Container-Security-Deep-Dive/Limiting-Docker-Capabilities`
+*  **cd** into  `/root/labs/container_training/Container/Limiting-Docker-Capabilities`
 
     ```commandline
-    cd /home/we45/container_training/Container/Container-Security-Deep-Dive/Limiting-Docker-Capabilities
+    cd /root/labs/container_training/Container/Limiting-Docker-Capabilities
     ```
 
 ##### Step 3:

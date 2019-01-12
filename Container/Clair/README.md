@@ -10,18 +10,13 @@
 
 ##### Step 2:
 
-* Run `cd /home/we45/container_training/Container/Container-Vulnerability-Assessment/Clair` into Clair Lab Folder
-
-    ```commandline
-    root@we45:~# cd /home/we45/container_training/Container/Container-Vulnerability-Assessment/Clair
-    root@we45:container_training/Container/Container-Vulnerability-Assessment/Clair#
-    ```
+* Run `cd /root/labs/container_training/Container/Clair` into Clair Lab Folder
 
 ##### Step 3:
 
 * Run clair related docker containers
 
-    * `docker run -d -p 5432:5432 --name db arminc/clair-db:2017-09-18`
+    * `docker run -d -p 5432:5432 --name db arminc/clair-db:2019-01-01`
     
     ```commandline
      root@we45:container_training/Container/Container-Vulnerability-Assessment/Clair# docker run -d -p 5432:5432 --name db arminc/clair-db:2017-09-18
