@@ -2,17 +2,9 @@
 
 ---
 
-##### Step 1:
-
-* Open terminal
-
-![](img/Open-Terminal.png)
-
-##### Step 2:
+* SSH into your Virtual Lab or open Terminal, if you're on the VM
 
 * Run `cd /root/labs/container_training/Container/Clair` into Clair Lab Folder
-
-##### Step 3:
 
 * Run clair related docker containers
 
@@ -29,15 +21,10 @@
     root@we45:container_training/Container/Container-Vulnerability-Assessment/Clair# docker run -d -p 6060:6060 --link db:postgres --name clair arminc/clair-local-scan:v2.0.1
     4e3e38be1f84ff757836ea1cf34184d160b90a9a63ee236b7134d2a842a74f58
     ```
-  
-##### Step 4:
 
 * Run Clair Scan 
     * `./clair-scanner --ip <VM_IP> -r clair_report.json abhaybhargav/vul_flask:latest`
     ![](img/run-scan.png)
-
-  
-##### Stop all running docker containers
 
 * Run `clean-docker` to stop all the containers
 

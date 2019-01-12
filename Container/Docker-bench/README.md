@@ -2,26 +2,13 @@
 
 ###### Docker-bench checks for common best-practices inspired from Docker-CIS-Benchmark when deploying docker containers in production. (https://benchmarks.cisecurity.org/tools2/docker/CIS_Docker_Community_Edition_Benchmark_v1.1.0.pdf) 
 
-
-##### Step 1:
-
-* Open terminal
-
-![](img/Open-Terminal.png)
-
-
-##### Step 2:
+* SSH into your Virtual Lab or open Terminal, if you're on the VM
 
 * Navigate to Docker-bench Lab Folder
 
 ```commandline
 cd /root/labs/container_training/Container/Docker-bench
 ```
-
-![](img/cd-path.png)
-
-
-##### Step 3:
 
 * Run docker bench command
 
@@ -31,10 +18,4 @@ docker run -it --net host --pid host --userns host --cap-add audit_control -e DO
 
 ![](img/cmd.png)
 
-##### Stop all running docker containers
-
 * Run `clean-docker` to stop all the containers
-
-```commandline
-root@we45:~$ clean-docker
-```

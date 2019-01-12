@@ -1,23 +1,8 @@
 ## Anchore
 
-##### Step 1:
+* SSH into your Virtual Lab or open Terminal, if you're on the VM
 
-* Open terminal
-
-![](img/Open-Terminal.png)
-
-##### Step 2:
-
-* Navigate to `/home/we45/container_training/Container/Container-Vulnerability-Assessment/Anchore`
-
-
-    ```commandline
-    root@we45:~/container_training/Container/Container-Vulnerability-Assessment/Anchore# cd /home/we45/container_training/Container/Container-Vulnerability-Assessment/Anchore
-    root@we45:~/container_training/Container/Container-Vulnerability-Assessment/Anchore#
-    ```
-
-
-##### Step 3:
+* Navigate to `/root/labs/container_training/Container/Anchore`
 
 * Run below three commands to set the environment variables.
 
@@ -26,7 +11,6 @@
     export ANCHORE_CLI_USER=admin
     export ANCHORE_CLI_PASS=admin
     ```
-##### Step 4:
 
 * Run `docker-compose up -d` to up the  anchore-cli and its requisites.
 
@@ -39,8 +23,6 @@
     ```` 
     
     **Note:** Wait 25 to 30 seconds to up the anchore database.
-    
-##### Step 5:
 
 * Run `anchore-cli image list` to view the list of analyzed images.
 
@@ -49,9 +31,7 @@
     docker.io/abhaybhargav/vul_flask:latest        9ac6b79cd152209c1311c319fd50658cf456ec3291e8b8803006ce3c8a51e506        analyzed        
     docker.io/library/debian:latest                f2aae6ff5d896839bfb8609cb1510bcf36efcb6950683c3bcfb760668b0eefbe        analyzed
     ```
-    
-    
-##### Step 6:
+
 
 * Once the database is up , run `anchore-cli image add abhaybhargav/vul_flask:latest` to add the image into the anchore, to scan the image.
 
@@ -70,8 +50,6 @@
     Full Tag: docker.io/abhaybhargav/vul_flask:latest
     
     ```
-   
-##### Step 7:
 
 * Run `anchore-cli image list` to verify the added image status
 
@@ -102,9 +80,6 @@
     libpixman-1-0                       0.32.6-3                                Unknown                                                                                                                                                                                                                                                                     
     libpixman-1-dev                     0.32.6-3                                Unknown                                                                                                                                                               
     ```
-
-   
-##### Step 9:
 
 * Run `anchore-cli image content docker.io/abhaybhargav/vul_flask:latest python` to check languages related issue.
 
@@ -153,12 +128,7 @@
     wsgiref                 0.1.2             /usr/local/lib/python2.7  
     ```
 
-##### Step 10:
-
 * Run `docker-compose down` to stop all the anchore containers.
-
-
-##### Stop all running docker containers
 
 * Run `clean-docker` to stop all the containers
 
