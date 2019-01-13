@@ -4,7 +4,7 @@ profile k8s-vul-flask-redis-armor flags=(attach_disconnected,mediate_deleted) {
   file,
   network,
   capability,
-  deny /app/** w, #deny file write to /app directory
+  deny /apps/** w, #deny file write to /app directory
   deny /tmp/** w, #deny file write to /tmp directory
   deny /etc/passwd rwklx, #deny all access to /etc/passwd
   deny /etc/shadow rwklx, #deny all access to /etc/shadow
