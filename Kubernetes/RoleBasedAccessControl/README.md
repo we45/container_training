@@ -29,7 +29,7 @@ sudo openssl req -new -key restricteduser.key -out restricteduser.csr -subj '/CN
 
 ##### Step 4:
 
-* Generate a self-signed key for k8s
+* Generate a self-signed key for k8s with the Cluster CA
 
 ```bash
 sudo openssl x509 -req -in restricteduser.csr -CA /etc/kubernetes/pki/ca.crt -CAkey /etc/kubernetes/pki/ca.key -CAcreateserial -out restricteduser.crt -days 365

@@ -75,7 +75,7 @@ root@we45:~$ clean-docker
 
 ![](img/tmux-greenband.png)
 
-* Now, type `ctrl + b + "` to split panes horizontally. We're going to operate on two panes
+* Now, type `ctrl + b + Shift+"` to split panes horizontally. We're going to operate on two panes
 
 ![](img/split_pane.png)
 

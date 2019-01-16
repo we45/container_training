@@ -3,7 +3,7 @@
 1. Open Shell
 2. Run: `cd /root/labs/container_training/Container/AppArmor`
 3. Multiplex terminal session with tmux, run: `tmux`
-4. Create and split panes horizontally `ctrl + b + "`
+4. Create and split panes horizontally `ctrl + b + Shift+"`
 5. First, let's go to the lower panel and start netcat listener: 
     * `ctrl + b + (lower arrow key)`
     * run: `nc -l 1337`
