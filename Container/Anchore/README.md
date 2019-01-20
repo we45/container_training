@@ -24,6 +24,8 @@
     
     **Note:** Wait 25 to 30 seconds to up the anchore database.
 
+* Run `docker ps` to confirm
+
 * Run `anchore-cli image list` to view the list of analyzed images.
 
     ```commandline

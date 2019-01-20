@@ -32,9 +32,14 @@ cd /root/container_training/Kubernetes/Kube-Hunter
 
 ##### Step 4: 
 
-* Start a passive scan with kube-hunter
+* Start a passive scan with kube-hunter on the server
+
+###### * Note: Server IP can be fetched by running `serverip` on the provisioned server.
+
 
 ```bash
+serverip
+
 ./kube-hunter.py
 ```
 
@@ -42,8 +47,3 @@ cd /root/container_training/Kubernetes/Kube-Hunter
 ##### Step 5: 
 
 * Select `option 1` to run a scan on the kubernetes instance deployed on the server and enter the Server IP
-
-
-###### * Note: Server IP can be fetched by running `serverip` on the server.
-
-

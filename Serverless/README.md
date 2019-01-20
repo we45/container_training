@@ -14,7 +14,7 @@
 
 * [Algorithm Confusion](Algorithm-Confusion/README.md)
 
-* [None Unique Value](Non-Unique-Value/README.md)
+* [Non Unique Value](Non-Unique-Value/README.md)
 
 
 ##### IAM Function Privilege Management
