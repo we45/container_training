@@ -11,11 +11,6 @@
 * [Role Based Access Control](RoleBasedAccessControl/README.md)
 
 
-##### Kubernetes - Pod Security Policy
-
-* [Pod Security Policy](PodSecurityPolicy/README.md)
-
-
 ##### Kubernetes - Resource Quota
 
 * [Resource Quota](ResourceQuota_Limit/README.md)

@@ -19,7 +19,11 @@ serverip
 
 ##### Step 3: 
 
-* Edit `falco_daemonset.yaml` and update the IP in curl command on `line 21`. Save and exit once IP has been updated.
+* Edit `falco_daemonset.yaml` and update the IP in curl command on `line 21`.
+
+```bash
+sed -i -e 's/SERVER-IP/<serverip>/g' falco_daemonset.yaml
+```
 
 EXAMPLE:
 
@@ -29,7 +33,7 @@ args: [ "/usr/bin/falco", "-pk", "-o", "json_output=true", "-o", "program_output
 
 ##### Step 4: 
 
-* Create the Falco daemonset and verify
+* Create the Falco daemonset
 
 ```yaml
 kubectl create -f falco_daemonset.yaml
@@ -47,13 +51,10 @@ kubectl get deployments
 kubectl get pods
 ```
 
+* Ensure that the `Status` of pods in `Running`
+
 ##### Step 6:
 
-* Start the tornado server
-
-```bash
-./tornado_server.py
-```
 
 * Start tornado server to get the real-time logs of malicious events
 

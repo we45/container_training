@@ -16,7 +16,7 @@ cd /root/container_training/Kubernetes/ResourceQuota_Limit
 kubectl create -f nginx-basic-limit.yaml
 ```
 
-* Ensure that the status of the pod is set to `Running`
+* Ensure that the `Status` of the pod is set to `Running`
 
 ```bash
 kubectl get pods
@@ -34,3 +34,10 @@ kubectl get pods
 
 * It can be observed that the stress test fails with `exit code 1` at 400M because of the limit specified in Pod Spec. 
 
+##### Step 4:
+
+* Delete the pod
+
+```bash
+kubectl delete -f nginx-basic-limit.yaml
+```

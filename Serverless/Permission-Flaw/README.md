@@ -55,7 +55,7 @@
 ##### Step 8:
 
 * Run `http POST https://a2to86jcrb.execute-api.us-east-1.amazonaws.com/api/bad_dynamo_search <<<'{
-        "db": "payment-cards",
+        "db": "2htw3dwxnc-payment-cards",
         "search_field": "card_number",
         "search_operator": "GT",
         "search_term": "*"
@@ -63,7 +63,7 @@
     
     ```commandline
     http POST https://a2to86jcrb.execute-api.us-east-1.amazonaws.com/api/bad_dynamo_search <<<'{
-            "db": "payment-cards",
+            "db": "2htw3dwxnc-payment-cards",
             "search_field": "card_number",
         "search_operator": "GT",
         "search_term": "*"
@@ -98,6 +98,3 @@
             ]
             }
     ```
-    
- 
-

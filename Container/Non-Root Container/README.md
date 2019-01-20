@@ -43,16 +43,12 @@ cat: /root/secret.txt: Permission denied
 
 * Run `docker run -ti --rm -u 1000 -v /root:/hostFS/ alpine sh` as `we45`(non-root user)
 
-```commandline
-we45@we45:~$ docker run -ti -v /:/hostFS/ alpine
-/ #
-```
 
 * Run `cat /hostFS/secret.txt` to view the content of the file.
 
 ```commandline
 /hostFS/root # cat secret.txt
-This is a secret
+cat: can't open '/hostFS/secret.txt': Permission denied
 ```
 
 * Run `exit` to exit from the container.
@@ -61,7 +57,6 @@ This is a secret
 /hostFS/root # exit
 we45@we45:~$
 ```
-
 
 * Run `clean-docker` to stop all the containers
 

@@ -127,6 +127,12 @@ echo $CLIENTTOKEN
 
 * In `kubernetes-vault.yaml` on `line 54`, replace the value of the token with that of `$CLIENTTOKEN` fetched in the last step and create a deployment.
 
+```commandline
+sed -i -e 's/Replace_with_$CLIENTTOKEN_Here/<CLIENTTOKEN>/g' kubernetes-vault.yaml
+
+kubectl create -f kubernetes-vault.yaml
+```
+
 EXAMPLE:
 
 ```yaml
@@ -135,11 +141,6 @@ EXAMPLE:
       addr: http://vault:8200
       token: s.5mEiuuaZoSUyfpZ6WC16mrCX
 ```
-
-```commandline
-kubectl create -f kubernetes-vault.yaml
-```
-
 
 ##### Step 13:
 
@@ -163,6 +164,14 @@ echo $VAULT_ROLE_ID
 
 * In `sample-app.yaml` on `line 27`, replace the value of `VAULT_ROLE_ID` with the value of `$VAULT_ROLE_ID` fetched in the previous step and create the deployment
 
+```commandline
+echo $VAULT_ROLE_ID
+
+sed -i -e 's/Replace_with_$VAULT_ROLE_ID_Value_Here/<VAULT_ROLE_ID>/g' sample-app.yaml
+
+kubectl apply -f sample-app.yaml
+```
+
 EXAMPLE:
 
 ```yaml
@@ -172,15 +181,9 @@ EXAMPLE:
         value: 23c14dda-11d7-054d-bc7a-5e4fc044c946
 ```
 
-```commandline
-echo $VAULT_ROLE_ID
-
-kubectl apply -f sample-app.yaml
-```
-
 ##### Step 15:
 
-* Observe the logs of each `sample-app` pod once it's running. It can be seen that each pod receives a unique token from vault.
+* Observe the logs of each `sample-app` pod once it's `Running`. It can be seen that each pod receives a unique token from vault.
 
 ```commandline
 kubectl get pods
