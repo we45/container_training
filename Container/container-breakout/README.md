@@ -80,6 +80,12 @@ root@we45:~$ clean-docker
 ![](img/split_pane.png)
 
 * Let's first operate on the top pane, with the command `ctrl + b + (upper arrow key)`
+* Let's first create our "super important process" with the following commands: 
+    ```
+    command='while true\ndo\necho "Super important process running"\nsleep 3\ndone'
+    echo "$command" > /root/super_important_process.sh && chmod +x /root/super_important_process.sh
+    ```
+
 * Now, run our program `./root/super_important_process.sh`. It should start running a "super important" process
 * Let's operate on the lower pane with `ctrl + b + (lower arrow key)`
 * Here, run `docker run -ti --pid=host alpine sh`
