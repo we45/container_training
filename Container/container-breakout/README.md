@@ -83,7 +83,7 @@ root@we45:~$ clean-docker
 * Let's first create our "super important process" with the following commands: 
     ```
     command='while true\ndo\necho "Super important process running"\nsleep 3\ndone'
-    echo "$command" > /root/super_important_process.sh && chmod +x /root/super_important_process.sh
+    printf "$command" > /root/super_important_process.sh && chmod +x /root/super_important_process.sh
     ```
 
 * Now, run our program `./root/super_important_process.sh`. It should start running a "super important" process
