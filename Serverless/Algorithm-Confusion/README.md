@@ -1,83 +1,10 @@
 ## Algorithm Confussion
 
-##### Step 1:
-
-* Open browser
-
-![](img/open-browser.png)
-
-
-##### Step 2:
-
-* open `http://sls-training-ui.s3-website-us-east-1.amazonaws.com/` to access the XML-Uploder application.
-
-![](img/login-page.png)
-
-##### Step 3:
-
-* Click `Shift + f9` or right click on top of the browser and click on `Web Developer` to select the `Storage Inspect` tab.
-
-![](img/local-storage.png)
-
-##### Step 4:
-
-* Click on `Local-Storage` icon on left, and expand.
-
-    * Copy the `guest_public_key` and `guest_token`
-    
-    ![](img/click-local-storage.png)
-
-##### Step 5:
-
-* Open Browser
-
-![](img/open-browser.png)
-
-
-##### Step 6:
-
-* Open `https://www.base64decode.org/` to decode the guest_public_key
-   
-
-##### Step 7:
-
-* Open Terminal
-
-![](img/Open-Terminal.png)
-    
-     
-##### Step 8:
-
-* Run `touch public_key.pem`
-
-    ```commandline
-    root@we45-VirtualBox:/home/we45# touch public_key.pem
-    ```
-##### Step 9:
-
-
-* Run `vim public_key.pem` 
-
-* Run `esc + i` to paste the decoded public key
-
-* Once it is pasted run `esc + wq` to save the file    
-
-##### Step 10:
-
+* SSH into the server given to you
+* Run: `cd /root/serverless-training-apps/jwt_example`
+* Run: `npm install -s jsonwebtoken@4.2.0 colors`
 * Run `node token_gen.js --file public_key.pem --username admin`
-
-   **Note:** Copy the token
-        
-
-    ```commandline
-    root@we45-VirtualBox:/home/we45# node token_gen.js --file public_key.pem --username admin
-        
-    This is your token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwic3RhdHVzIjoiaGFja2VkIiwiaWF0IjoxNTM3ODk1Mjc0fQ.XFhJRm1W_58ulrgVJ9_vy7LsGy14VICXCLMQsh8g-nE
-    
-    ```
-    
-##### Step 11:
-
+* Copy the token after the characters `This is your token: `
 * Run `http GET https://3u97ne6l2g.execute-api.us-east-1.amazonaws.com/latest/confusion Authorization:<copied token>`
 
     ```commandline
