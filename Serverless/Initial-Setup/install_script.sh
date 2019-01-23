@@ -10,17 +10,11 @@ git clone https://github.com/we45/serverless-training-apps.git ~/serverless-trai
 curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
 echo 'deb https://deb.nodesource.com/node_10.x xenial main' > /etc/apt/sources.list.d/nodesource.list
 echo 'deb-src https://deb.nodesource.com/node_10.x xenial main' >> /etc/apt/sources.list.d/nodesource.list
-sleep 10
-pkill dpkg
-sleep 5
+sleep 2
 apt update
-# curl -sL https://deb.nodesource.com/setup_10.x | bash
-dpkg --configure -a
-sleep 5
-apt-get install -y nodejs
-
-# Install virtualenv
-apt-get install -y virtualenv
+killall dpkg && dpkg --configure -a
+sleep 1
+apt install -y nodejs virtualenv
 
 # Install bandit, pipenv & awscli
 pip install bandit pipenv awscli
