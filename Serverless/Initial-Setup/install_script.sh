@@ -7,8 +7,16 @@ git clone https://github.com/we45/NodeJsScan.git ~/NodeJsScan
 git clone https://github.com/we45/serverless-training-apps.git ~/serverless-training-apps
 
 # Install Node
-curl -sL https://deb.nodesource.com/setup_10.x | bash
+curl -s https://deb.nodesource.com/gpgkey/nodesource.gpg.key | apt-key add -
+echo 'deb https://deb.nodesource.com/node_10.x xenial main' > /etc/apt/sources.list.d/nodesource.list
+echo 'deb-src https://deb.nodesource.com/node_10.x xenial main' >> /etc/apt/sources.list.d/nodesource.list
+sleep 10
+pkill dpkg
+sleep 5
+apt update
+# curl -sL https://deb.nodesource.com/setup_10.x | bash
 dpkg --configure -a
+sleep 5
 apt-get install -y nodejs
 
 # Install virtualenv
@@ -22,3 +30,5 @@ export LANG=en_US.UTF-8
 
 # DVFaaS pipenv requirements
 cd /root/DVFaaS-Damn-Vulnerable-Functions-as-a-Service && pipenv --python /usr/bin/python3 install boto3 && cd ~/
+
+echo "Done!"
