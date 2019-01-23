@@ -7,7 +7,8 @@ git clone https://github.com/we45/NodeJsScan.git ~/NodeJsScan
 git clone https://github.com/we45/serverless-training-apps.git ~/serverless-training-apps
 
 # Install Node
-curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_10.x | bash
+dpkg --configure -a
 apt-get install -y nodejs
 
 # Install virtualenv
@@ -20,7 +21,7 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 # DVFaaS pipenv requirements
-cd /root/DVFaaS-Damn-Vulnerable-Functions-as-a-Service && pipenv --python /usr/bin/python3 --skip-lock install boto3 && cd ~/
+cd /root/DVFaaS-Damn-Vulnerable-Functions-as-a-Service && pipenv --python /usr/bin/python3 install boto3 && cd ~/
 
 # Setup AWS
 aws configure set default.region us-east-1
