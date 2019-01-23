@@ -1,5 +1,15 @@
 # [Serverless](README.md)
 
+### Initial Setup
+
+* Update the Labs
+
+```bash
+cd /root/container_training/Serverless/Initial-Setup/
+
+./install_script.sh
+```
+
 
 ##### Function Data Event Injection
 

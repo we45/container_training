@@ -13,5 +13,11 @@ apt-get install -y nodejs
 # Install virtualenv
 apt-get install -y virtualenv
 
-# Install bandit
-pip install bandit
+# Install bandit & pipenv
+pip install bandit pipenv
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+# DVFaaS pipenv requirements
+cd /root/DVFaaS-Damn-Vulnerable-Functions-as-a-Service && pipenv --python /usr/bin/python3 --skip-lock install boto3 && cd ~/
