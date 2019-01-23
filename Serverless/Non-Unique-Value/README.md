@@ -10,7 +10,7 @@
 ##### Step 2:
 
 * open `http://sls-training-ui.s3-website-us-east-1.amazonaws.com/` to access the XML-Uploader application.
-**Note:** Login has
+**Note:** Login as
  ```
  email: jr@widget.co
  password: Test@1234    

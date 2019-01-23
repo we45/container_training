@@ -15,7 +15,7 @@
 
 ##### Step 3:
 
-* Click on `Search` icon to search for information.
+* Register if necessary and once logged in, click on `Search` icon to search for information.
 
 ![](img/search-icon.png)
 

@@ -38,7 +38,7 @@
 
 * Upload-XML file view
 
-**Note:** Please upload a malicious XML file
+**Note:** Please upload a malicious XML file (https://github.com/we45/container_training/blob/master/Serverless/Event-Injection-S3/malicious-xml.xml)
 
 ![](img/upload-file-view.png)
 

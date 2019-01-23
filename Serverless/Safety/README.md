@@ -1,9 +1,7 @@
 # **`Safety - Python Source-Code-Analysis-Tool`**
 
 
-Step 1: Navigate to the directory(`/home/we45/serverless-training-apps`) that has the python virtual-environment.
-
-![](img/safety-1.png)
+Step 1: Navigate to the directory(`~/serverless-training-apps`) that has the python virtual-environment.
 
 
 Step 2: Activate python-virtual environment by running `source venv/bin/activate`
