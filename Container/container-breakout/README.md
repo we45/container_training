@@ -48,10 +48,10 @@ we45@we45:~$ docker run -ti -v /:/hostFS/ alpine
 / #
 ```
 
-* Run `cat /hostFS/secret.txt` to view the content of the file.
+* Run `cat /hostFS/root/secret.txt` to view the content of the file.
 
 ```commandline
-/hostFS/root # cat secret.txt
+/hostFS/root # cat /hostFS/root/secret.txt
 This is a secret
 ```
 
@@ -61,7 +61,6 @@ This is a secret
 /hostFS/root # exit
 we45@we45:~$
 ```
-
 
 * Run `clean-docker` to stop all the containers
 
@@ -75,20 +74,20 @@ root@we45:~$ clean-docker
 
 ![](img/tmux-greenband.png)
 
-* Now, type `ctrl + b + Shift+"` to split panes horizontally. We're going to operate on two panes
+* Now, type `ctrl + b + "` to split panes horizontally. We're going to operate on two panes
 
 ![](img/split_pane.png)
 
 * Let's first operate on the top pane, with the command `ctrl + b + (upper arrow key)`
 * Let's first create our "super important process" with the following commands: 
     ```
-    command='while true\ndo\necho "Super important process running"\nsleep 3\ndone'
+    command='while true\ndo\necho "Super important process running $$"\nsleep 3\ndone'
     printf "$command" > /root/super_important_process.sh && chmod +x /root/super_important_process.sh
     ```
 
 * Now, run our program `./root/super_important_process.sh`. It should start running a "super important" process
 * Let's operate on the lower pane with `ctrl + b + (lower arrow key)`
-* Here, run `docker run -ti --pid=host alpine sh`
+* Here, run `docker run -ti --pid=host --privileged alpine sh`
 * Now run `ps aux` and look at the process tree. You will see that your container's processes and the host's processes have NOT been isolated
 * Now run `ps aux | grep 'super'` to triangulate the super_important process. get the `pid` of the process
 * now run `kill <pid>` and you will see that the super important process (running on host) is now terminated.

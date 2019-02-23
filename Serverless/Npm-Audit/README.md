@@ -1,7 +1,7 @@
 # **`NPM-Audit - NodeJS Source-Code-Analysis-Tool`**
 
 
-Step 1: Navigate to the directory(`~/serverless-training-apps/Cut-The-Funds-NodeJS`) that has the source code to be scanned.
+Step 1: Navigate to the directory(`~/Cut-The-Funds-NodeJS`) that has the source code to be scanned.
 
 ![](img/npm-audit-1.png)
 
