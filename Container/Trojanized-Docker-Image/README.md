@@ -4,6 +4,12 @@
 
 ##### Step 1:
 
+* Install `dockerscan`
+
+```bash
+export LC_CTYPE=en_US.UTF-8 && pip3 install dockerscan
+```
+
 * Pull and save ubuntu image (`ubuntu:latest`) that is to be trojanized.
 
 ```commandline

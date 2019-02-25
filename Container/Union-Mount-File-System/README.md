@@ -3,6 +3,12 @@
 
 ##### Step 1: 
 
+* Install union-fs 
+
+```bash
+apt install unionfs-fuse tree
+```
+
 * Create Three Folders named `Folder-1`,  `Folder-2` and `mnt`
 
 ```bash

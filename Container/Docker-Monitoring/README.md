@@ -3,7 +3,13 @@
 
 ##### Step 1:
 
- * Run `service auditd status` to check if `auditd` service is running. If the service is not runninig, run `service auditd start`.
+* Install `auditd`
+
+```bash
+apt install auditd
+```
+
+* Run `service auditd status` to check if `auditd` service is running. If the service is not runninig, run `service auditd start`.
 
 
 ![](img/auditd-1.png)
