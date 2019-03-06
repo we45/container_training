@@ -1,7 +1,5 @@
 # Pod Security Policy
 
-##### * NOTE: This exercise does NOT work on the server provisioned.
-
 ###### There are multiple options that one can use to protect the runtime deployment of a Pod. One of them is the `PodSecurityPolicy`.
 
 ###### `PodSecurityPolicy` can be deployed, cluster-wide, namespace-wide or inline as part of the Pod's declaration.
