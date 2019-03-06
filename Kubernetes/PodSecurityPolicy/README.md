@@ -72,6 +72,8 @@ cd /root/container_training/Kubernetes/PodSecurityPolicy
 
 ##### Step 4:
 
+* Create the nginx configmap with `kubectl create configmap nginx-config --from-file=/root/container_training/Kubernetes/PodSecurityPolicy/reverseproxy.conf`
+
 * Deploy the pod with `kubectl create -f secure-ngflask-deploy.yml`
 
 * Run `kubectl get pods` and make wait till you get the status of `Running` for the Pod
