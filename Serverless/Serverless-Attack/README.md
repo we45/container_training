@@ -100,7 +100,7 @@ export AWS_SECRET_ACCESS_KEY=<VALUE-OF-AWS_SECRET_ACCESS_KEY>
 
 * Use `aws-cli` to fetch decrypted `JWT_PASS` from `SSM` 
 
-###### * Note: Ensure that the AWS `environment variables` have been set
+###### * Note: Ensure that `aws-cli` has been installed and the AWS `environment variables` have been set 
 
 ```bash
 aws ssm get-parameters --names "JWT_PASS" --with-decryption

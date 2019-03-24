@@ -4,6 +4,13 @@
 
 > By now, please make sure you have AWS creds configured
 
+
+* Install pip3
+
+```bash
+wget https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py && rm get-pip.py
+```
+
 * Install Terraform:
 
 ```
@@ -26,6 +33,7 @@ terraform --version
 * run: `mkdir -p .chalice`
 * run `cp ../ops/config.json .chalice/`
 * Run `pip3 install chalice`
+* Run `pip3 install -r requirements.txt`
 * Run `chalice deploy`. This deploys the serverless function and generates the URL
 * Test url with `http POST https://<api-generated-url>/api/create-user email=<some-email>`
 
