@@ -23,7 +23,9 @@ curl -L https://git.io/getLatestIstio | sh -
 * Navigate to the installation directory
 
 ```
-cd istio-1.0.6
+ls
+
+cd istio-1.x.x
 ```
 
 ##### Step 2:

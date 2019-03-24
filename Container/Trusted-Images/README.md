@@ -76,6 +76,8 @@ docker pull <username>/trusted:latest
 
 * It can be observed that only signed images can be pulled.
 
+###### * Note: Check `~/.docker/trust/private` for private keys
+
 
 ##### Step 6:
 
