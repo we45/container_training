@@ -22,6 +22,8 @@ pip install bandit pipenv awscli
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+pip uninstall -y urllib3 && pip install urllib3==1.22
+
 # DVFaaS pipenv requirements
 cd /root/DVFaaS-Damn-Vulnerable-Functions-as-a-Service && pipenv --python /usr/bin/python3 install boto3 && cd ~/
 

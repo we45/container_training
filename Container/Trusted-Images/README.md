@@ -1,123 +1,99 @@
 ## Trusted Images
 
+
 ##### Step 1:
 
-* Create a new Docker Hub repository  `https://hub.docker.com/`
+* Register/Login on [DockerHub](https://hub.docker.com/)
 
-    ![Dockerhub](img/docker-hub.png)
-    
+```bash
+https://hub.docker.com/
+```
+
+![Dockerhub](img/docker-hub.png)
+
+
+* On the server provisioned, login with DockerHub credentials
+
+```bash
+docker login
+```
+
 
 ##### Step 2:
 
-* Open Terminal
+* Tag an `alpine` image using DockerHub username
 
-    ![Terminal](img/Open-Terminal.png)
-    
-   
+````bash
+docker tag alpine <username>/untrusted:latest
+````
+
+* Push the `<username>/untrusted:latest` image to DockerHub
+
+```bash
+docker push <username>/untrusted:latest
+```
+
+
 ##### Step 3:
 
-* Run `docker login`
+* Enable [Content Trust](https://docs.docker.com/engine/security/trust/content_trust/) on the server provisioned
 
-    ```commandline
-    docker login
-    Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
-    Username: <username>
-    Password: <password>
-    Login Succeeded
-    ```
-    
+```bash
+export DOCKER_CONTENT_TRUST=1
+```
+
+* Try to pull the `<username>/untrusted:latest` image from DockerHub and observe the results
+
+```bash
+docker pull <username>/untrusted:latest
+```
+
+
 ##### Step 4:
 
-* Create a tag for alpine image using your Docker Hub username(namespace)
+* With `Content Trust` enabled, tag an `alpine` image using DockerHub username
 
-    ````commandline
-    docker tag alpine <username>/distrust:latest
-    ````
+````bash
+docker tag alpine <username>/trusted:latest
+````
+
+* Push the `<username>/trusted:latest` image to DockerHub
+
+```bash
+docker push <username>/trusted:latest
+```
+
+###### * Note: You will be prompted to create a new root signing key passphrase. 
+
 
 ##### Step 5:
 
-* Push the image to Docker Hub
+* Pull the `<username>/trusted:latest` image from DockerHub Repository.
 
-    ````commandline
-    docker push <username>/distrust:latest
-    ````
-    
+```bash
+docker pull <username>/trusted:latest
+```
+
+* It can be observed that only signed images can be pulled.
+
+
 ##### Step 6:
 
-* Open Docker Hub `https://hub.docker.com/` in your browser
+* Inspect the `untrusted` and `trusted` docker images
+
+```bash
+docker trust inspect <username>/untrusted:latest
+
+docker trust inspect <username>/trusted:latest
+```
+
 
 ##### Step 7:
 
-* Enable Content Trust
+* Disable `Content Trust` to pull images for other exercises
 
-* Run `export DOCKER_CONTENT_TRUST=1` in terminal
+```bash
+export DOCKER_CONTENT_TRUST=0
+```
 
-    ```commandline
-    export DOCKER_CONTENT_TRUST=1
-    ```
-
-##### Step 8:
-
-* Run `docker pull <username>/distrust:latest` to pull the docker iage from the Docker Hub Repository.
-
-    ```commandline
-    docker pull <username>/distrust:latest
-    Using default tag: latest
-    No valid trust data for latest
-    ```
-    
-    
-##### Step 9:
-
-* Create a tag for alpine image using your Docker Hub username(namespace)
-
-    ````commandline
-    docker tag alpine <username>/trust:latest
-    ````
-
-##### Step 10:
-
-* Push the image to Docker Hub
-
-    ````commandline
-    docker push <username>/trust:latest
-    ````
-    
-##### Step 11:
-
-* Open Docker Hub `https://hub.docker.com/` in your browser
-
-
-##### Step 12:
-
-* Run `docker pull <username>/trust:latest` to pull the docker iage from the Docker Hub Repository.
-
-    ```commandline
-    docker pull <username>/trust:latest
-    Using default tag: latest
-    latest: Pulling from tilakt/dctrust
-    Digest: sha256:5e8e0509e829bb8f990249135a36e81a3ecbe94294e7a185cc14616e5fad96bd
-    Status: Image is up to date for <username>/trust:latest
-    ```
-    
- 
- ##### Step 13:
- 
- * Run `clean-docker` to stop all containers.  
-
-    ```commandline
-    (venv)root@we45: clean-docker
-    92200af86b18
-    ca94dab2d52e
-    92200af86b18
-    34c4adcf326d
-    86cd73d03ef1
-    ca94dab2d52e
-    "docker rmi" requires at least 1 argument.
-    See 'docker rmi --help'.
-    
-    Usage:  docker rmi [OPTIONS] IMAGE [IMAGE...]
-    
-    Remove one or more images
-    
-    ```
+* Run `clean-docker` to stop all containers.  
