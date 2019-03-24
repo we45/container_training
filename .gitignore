@@ -6,3 +6,4 @@ Serverless/Secrets-Management/ops/terraform.tfstate
 Serverless/Secrets-Management/ops/terraform.tfstate.backup
 Serverless/Secrets-Management/training-secrets/.chalice/deployed/dev.json
 Serverless/Secrets-Management/training-secrets/.chalice/config.json
+Serverless/Secrets-Management/ops/config.json

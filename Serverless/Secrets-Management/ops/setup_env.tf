@@ -101,3 +101,17 @@ resource "aws_ssm_parameter" "jwt-pass" {
   type = "SecureString"
   value = "${random_string.JWT_PASS.result}"
 }
+
+data "template_file" "config_chalice" {
+  template = "${file("config.json.tpl")}"
+  vars {
+    ROLE_NAME = "${aws_iam_role.envelope_role.arn}"
+    DB_TABLE = "${aws_dynamodb_table.envelope-db.name}"
+    KEY_ID = "${aws_kms_key.test-training-key.key_id}"
+  }
+}
+
+resource "local_file" "variables_json" {
+  filename = "config.json"
+  content = "${data.template_file.config_chalice.rendered}"
+}

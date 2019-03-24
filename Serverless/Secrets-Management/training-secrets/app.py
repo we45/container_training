@@ -10,7 +10,6 @@ client = boto3.client('kms')
 dynamo = boto3.resource('dynamodb')
 
 db = environ.get('DB_TABLE')
-# jwt_pass = environ.get('JWT_PASS')
 kms_cmk = environ.get('KEY_ID')
 jwt_pwd = ssm.get_parameter(Name = 'we45-training-jwt-pass', WithDecryption = True)['Parameter']['Value']
 
