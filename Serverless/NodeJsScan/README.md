@@ -11,7 +11,7 @@ cd /root/NodeJsScan
 Step 2: Create a python-virtual environment
 
 ```bash
-virtualenv venv
+virtualenv -p python2 venv
 
 ls
 ```

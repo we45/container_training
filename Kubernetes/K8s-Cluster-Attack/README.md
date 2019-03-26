@@ -157,7 +157,7 @@ You should see a dump of all Environment variable on the container
 serverip
 ```
 
-* In the `payloads` directory, edit `line 2` of `reverse_shell.yml` and replace `Server_IP_Here` with value of `serverip` fetched in the previous step.
+* In the `payloads` directory, edit `line 2` of `reverse_shell.yml` and replace `<serverip>` with value of `serverip` fetched in the previous step.
 
 ```bash
 sed -i -e 's/Server_IP_Here/<serverip>/g' reverse_shell.yml

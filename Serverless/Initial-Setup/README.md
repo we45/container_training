@@ -5,7 +5,7 @@
 * Update the Labs
 
 ```bash
-cd /root/container_training/Serverless/Initial-Setup/
+cd Serverless/Initial-Setup/
 
 ./install_script.sh
 ```

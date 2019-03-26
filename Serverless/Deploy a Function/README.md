@@ -36,6 +36,14 @@ cd insecure_deserialization/insecure-deserialization
 #### * IMPORTANT: Ensure that the AWS creds have been configured!
 
 
+* Set the necessary environment variables
+
+```bash
+export LC_ALL=C.UTF-8
+
+export LANG=C.UTF-8
+```
+
 * Deploy the serverless function using `chalice`
 
 ```bash

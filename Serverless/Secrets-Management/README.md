@@ -29,7 +29,7 @@ terraform --version
 
 * You need to select `us-west-2` when terraform prompts. Other regions are ok to. Please use a valid region.
 * If terraform has run successfully, it generates a `config.json`
-* Now, run: `cd /root/container_training/Serverless/Secrets-Management/training-secrets`
+* Now, run: `cd container_training/Serverless/Secrets-Management/training-secrets`
 * run: `mkdir -p .chalice`
 * run `cp ../ops/config.json .chalice/`
 * Run `pip3 install chalice`

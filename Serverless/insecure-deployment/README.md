@@ -1,7 +1,7 @@
 ## Insecure Deployment - IAM Privileges
 
 
-* Run: `cd /root/container_training/Serverless/insecure-deployment`
+* Run: `cd container_training/Serverless/insecure-deployment`
 
 * Run `npm install`
 
