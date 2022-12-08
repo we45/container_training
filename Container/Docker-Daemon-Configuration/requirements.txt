@@ -1,6 +1,6 @@
 argparse==1.2.1
 backports.ssl-match-hostname==3.5.0.1
-certifi==2018.8.24
+certifi==2022.12.7
 chardet==3.0.4
 docker==3.5.0
 docker-pycreds==0.3.0
